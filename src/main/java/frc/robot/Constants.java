@@ -47,6 +47,14 @@ public final class Constants
                                                                          Meter.of(4)),
                                                              Rotation2d.fromDegrees(180));
   
+  public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(1),
+                                                                     Meter.of(4)),
+                                                              Rotation2d.fromDegrees(0));
+
+  public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(1),
+                                                                     Meter.of(4)),
+                                                              Rotation2d.fromDegrees(0));                                                              
+
   public static final class DrivebaseConstants
   {
 

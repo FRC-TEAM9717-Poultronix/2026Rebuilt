@@ -24,7 +24,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
+import frc.robot.subsystems.targeting.TargetingSubsystem;
+
 import java.io.File;
+import java.lang.annotation.Target;
 
 import frc.robot.Constants;
 import swervelib.SwerveDrive;
@@ -50,6 +53,7 @@ public class RobotContainer
   // The robot's subsystems and commands are defined here...
   final SwerveSubsystem       m_drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                                 "swerve/neo"));
+  final TargetingSubsystem     m_targeting = new TargetingSubsystem(m_drivebase);
 
   // Create SmartDashboard chooser for autonomous and teleop routines
   private final SendableChooser<Command> m_chooserTeleop = new SendableChooser<>();
@@ -63,7 +67,9 @@ public class RobotContainer
                                                             .withControllerRotationAxis(() -> m_driverSwitch.getRawAxis(2) * -0.7 * throttleAngle)
                                                             .deadband(OperatorConstants.DEADBAND)
                                                             .scaleTranslation(0.8)
-                                                            .allianceRelativeControl(true);
+                                                            .allianceRelativeControl(true)
+                                                            .aimWhile(m_driverSwitch.button(4))
+                                                            .aim(m_targeting.getGoalInMapFrame().orElse(null));
 
   /**
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
