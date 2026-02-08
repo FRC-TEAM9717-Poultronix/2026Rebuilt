@@ -20,6 +20,7 @@ public class Robot extends TimedRobot
 
   private static Robot   instance;
   private        Command m_autonomousCommand;
+  private        Command m_teleopCommand;
 
   private RobotContainer m_robotContainer;
 
@@ -65,6 +66,10 @@ public class Robot extends TimedRobot
   @Override
   public void robotPeriodic()
   {
+    m_robotContainer.throttleTrans = m_robotContainer.calcThrottle();
+    m_robotContainer.throttleAngle = m_robotContainer.calcThrottle();
+
+      
     // Runs the Scheduler.  This is responsible for polling buttons, adding newly-scheduled
     // commands, running already-scheduled commands, removing finished or interrupted commands,
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
@@ -78,17 +83,17 @@ public class Robot extends TimedRobot
   @Override
   public void disabledInit()
   {
-    m_robotContainer.setMotorBrake(true);
+    m_robotContainer.m_drivebase.setMotorBrake(true);
     disabledTimer.reset();
     disabledTimer.start();
   }
-  
+
   @Override
   public void disabledPeriodic()
   {
     if (disabledTimer.hasElapsed(Constants.DrivebaseConstants.WHEEL_LOCK_TIME))
     {
-      m_robotContainer.setMotorBrake(false);
+      m_robotContainer.m_drivebase.setMotorBrake(false);
       disabledTimer.stop();
       disabledTimer.reset();
     }
@@ -100,7 +105,7 @@ public class Robot extends TimedRobot
   @Override
   public void autonomousInit()
   {
-    m_robotContainer.setMotorBrake(true);
+    m_robotContainer.m_drivebase.setMotorBrake(true);
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     //Print the selected autonomous command upon autonomous init
@@ -134,6 +139,13 @@ public class Robot extends TimedRobot
     } else
     {
       CommandScheduler.getInstance().cancelAll();
+    }
+    
+    m_teleopCommand = m_robotContainer.getTeleopDriveCommand();
+    // schedule the teleop command (example)
+    if (m_teleopCommand != null)
+    {
+      m_teleopCommand.schedule();
     }
   }
 
