@@ -22,6 +22,7 @@ import edu.wpi.first.networktables.NetworkTablesJNI;
 import edu.wpi.first.wpilibj.Alert;
 import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import frc.robot.Constants;
 import frc.robot.Robot;
 import java.awt.Desktop;
 import java.util.ArrayList;
@@ -52,8 +53,7 @@ public class Vision
   /**
    * April Tag Field Layout of the year.
    */
-  public static final AprilTagFieldLayout fieldLayout                     = AprilTagFieldLayout.loadField(
-      AprilTagFields.k2026RebuiltWelded);
+  public static final AprilTagFieldLayout fieldLayout = Constants.fieldLayout;
   /**
    * Ambiguity defined as a value between (0,1). Used in {@link Vision#filterPose}.
    */
@@ -336,32 +336,25 @@ public class Vision
   enum Cameras
   {
     /**
-     * Left Camera
+     * Cameras
      */
-    LEFT_CAM("left",
-             new Rotation3d(0, Math.toRadians(-24.094), Math.toRadians(30)),
-             new Translation3d(Units.inchesToMeters(12.056),
-                               Units.inchesToMeters(10.981),
-                               Units.inchesToMeters(8.44)),
-             VecBuilder.fill(4, 4, 8), VecBuilder.fill(0.5, 0.5, 1)),
-    /**
-     * Right Camera
-     */
-    RIGHT_CAM("right",
-              new Rotation3d(0, Math.toRadians(-24.094), Math.toRadians(-30)),
-              new Translation3d(Units.inchesToMeters(12.056),
-                                Units.inchesToMeters(-10.981),
-                                Units.inchesToMeters(8.44)),
-              VecBuilder.fill(4, 4, 8), VecBuilder.fill(0.5, 0.5, 1)),
-    /**
-     * Center Camera
-     */
-    CENTER_CAM("center",
-               new Rotation3d(0, Units.degreesToRadians(18), 0),
-               new Translation3d(Units.inchesToMeters(-4.628),
-                                 Units.inchesToMeters(-10.687),
-                                 Units.inchesToMeters(16.129)),
-               VecBuilder.fill(4, 4, 8), VecBuilder.fill(0.5, 0.5, 1));
+    CAM1(Constants.VisionConstants.Camera1Name,
+         Constants.VisionConstants.Camera1Rotation,
+         Constants.VisionConstants.Camera1Translation,
+         Constants.VisionConstants.CameraStdTrans, 
+         Constants.VisionConstants.CameraStdRot),
+
+    CAM2(Constants.VisionConstants.Camera2Name,
+         Constants.VisionConstants.Camera2Rotation,
+         Constants.VisionConstants.Camera2Translation,
+         Constants.VisionConstants.CameraStdTrans, 
+         Constants.VisionConstants.CameraStdRot),
+         
+    CAM3(Constants.VisionConstants.Camera2Name,
+         Constants.VisionConstants.Camera2Rotation,
+         Constants.VisionConstants.Camera2Translation,
+         Constants.VisionConstants.CameraStdTrans, 
+         Constants.VisionConstants.CameraStdRot);          
 
     /**
      * Latency alert to use when high latency is detected.
