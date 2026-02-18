@@ -84,6 +84,8 @@ public final class Constants
 
   public static final class VisionConstants
   {
+    public static final Boolean Enable = false;
+
     public static final String Camera1Name = "center";
     public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(15), 0);
     public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(13.5),

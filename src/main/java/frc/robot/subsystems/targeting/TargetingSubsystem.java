@@ -117,6 +117,8 @@ public class TargetingSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
 
+        if(!Constants.VisionConstants.Enable) return;
+        
         // Get transform to goal
         Pose2d goal = getGoalInMapFrame().get();
         Pose2d robot = m_drivebase.getPose();
