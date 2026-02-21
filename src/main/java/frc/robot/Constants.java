@@ -8,7 +8,6 @@ import static edu.wpi.first.units.Units.Meter;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.apriltag.AprilTagFields;
-import edu.wpi.first.math.Matrix;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.Vector;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -16,9 +15,9 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.geometry.Translation3d;
+import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.math.util.Units;
 import swervelib.math.Matter;
-import edu.wpi.first.math.numbers.N3;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean constants. This
@@ -79,7 +78,18 @@ public final class Constants
 
   public static final class ShooterConstants
   {
+    public static final int CANID_SHOOTER = 32;
+    public static final int CANID_INDEX_UPPER = 32;
+    public static final int CANID_INDEX_LOWER = 32;
 
+    public static final int MAXCURRENTLIMIT = 40; 
+    public static final double RAMPRATESHOOTER = 1.0;
+
+    public static final double kP_shooter = 0.000035;
+    public static final double kI_shooter = 0.0;
+    public static final double kD_shooter = 0.000015;  
+    
+    public static final double maxVelocity = 3000;
   }
 
   public static final class VisionConstants
