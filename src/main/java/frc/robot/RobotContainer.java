@@ -56,7 +56,7 @@ public class RobotContainer
   final SwerveSubsystem       m_drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                                 "swerve/neo"));
   final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
-  final ShooterSubsystem      m_shooter = new ShooterSubsystem();
+  //final ShooterSubsystem      m_shooter = new ShooterSubsystem();
 
   // Create SmartDashboard chooser for autonomous and teleop routines
   private final SendableChooser<Command> m_chooserTeleop = new SendableChooser<>();
@@ -151,7 +151,7 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-    NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> m_driver1.getRawAxis(2)));
+   // NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> m_driver1.getRawAxis(2)));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));

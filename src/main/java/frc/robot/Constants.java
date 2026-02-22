@@ -76,20 +76,23 @@ public final class Constants
 
   }
 
-  public static final class ShooterConstants
+  //public static final class ShooterConstants
   {
-    public static final int CANID_SHOOTER = 32;
-    public static final int CANID_INDEX_UPPER = 32;
-    public static final int CANID_INDEX_LOWER = 32;
+   // public static final int CANID_SHOOTER = 32;
+    //public static final int CANID_INDEX_UPPER = 32;
+    //public static final int CANID_INDEX_LOWER = 32;
 
-    public static final int MAXCURRENTLIMIT = 40; 
-    public static final double RAMPRATESHOOTER = 1.0;
+    //public static final int MAXCURRENTLIMIT = 40; 
+    //public static final double RAMPRATESHOOTER = 1.0;
 
-    public static final double kP_shooter = 0.000035;
-    public static final double kI_shooter = 0.0;
-    public static final double kD_shooter = 0.000015;  
+//    public static final double kP_shooter = 0.000035;
+  //  public static final double kI_shooter = 0.0;
+    //public static final double kD_shooter = 0.000015;
+
+//    public static final double kV_shooter = 0.000085;
+  //  public static final double kS_shooter = 0.10;
     
-    public static final double maxVelocity = 3000;
+    //public static final double maxVelocity = 3000;
   }
 
   public static final class VisionConstants

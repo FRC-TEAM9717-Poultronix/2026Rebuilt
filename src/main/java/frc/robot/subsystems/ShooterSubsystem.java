@@ -23,83 +23,84 @@ import frc.robot.Constants;
 import frc.robot.Constants.HangerConstants;
 
 public class ShooterSubsystem extends SubsystemBase {
-    private final SparkFlex m_shooter;
-    private final SparkFlex m_indexerUpper;
-    private final SparkFlex m_indexerLower;
+  //  private final SparkFlex m_shooter;
+   // private final SparkFlex m_indexerUpper;
+   // private final SparkFlex m_indexerLower;
 
-    private final SparkFlexConfig m_shooterConfig;
-    private final SparkFlexConfig m_indexerUpperConfig;
-    private final SparkFlexConfig m_indexerLowerConfig;
+  //  private final SparkFlexConfig m_shooterConfig;
+   // private final SparkFlexConfig m_indexerUpperConfig;
+  //  private final SparkFlexConfig m_indexerLowerConfig;
 
-    private final RelativeEncoder m_encoderShooter;
+  //  private final RelativeEncoder m_encoderShooter;
 
-    private double m_currentVelocity;
-    private double m_currentCurrent;
+  //  private double m_currentVelocity;
+  //  private double m_currentCurrent;
     
-    public ShooterSubsystem() {
-        m_shooter = new SparkFlex(Constants.ShooterConstants.CANID_SHOOTER, MotorType.kBrushless);
-        m_indexerUpper = new SparkFlex(Constants.ShooterConstants.CANID_INDEX_UPPER, MotorType.kBrushless);
-        m_indexerLower = new SparkFlex(Constants.ShooterConstants.CANID_INDEX_LOWER, MotorType.kBrushless);
+  //  public ShooterSubsystem() {
+  //      m_shooter = new SparkFlex(Constants.ShooterConstants.CANID_SHOOTER, MotorType.kBrushless);
+  //      m_indexerUpper = new SparkFlex(Constants.ShooterConstants.CANID_INDEX_UPPER, MotorType.kBrushless);
+   //     m_indexerLower = new SparkFlex(Constants.ShooterConstants.CANID_INDEX_LOWER, MotorType.kBrushless);
 
-         m_shooterConfig = new SparkFlexConfig();
-         m_indexerUpperConfig = new SparkFlexConfig();
-         m_indexerLowerConfig = new SparkFlexConfig();
+   //      m_shooterConfig = new SparkFlexConfig();
+   //      m_indexerUpperConfig = new SparkFlexConfig();
+   //      m_indexerLowerConfig = new SparkFlexConfig();
 
-        m_encoderShooter = m_shooter.getEncoder();
+   //     m_encoderShooter = m_shooter.getEncoder();
 
-        configureMotors();
+    //    configureMotors();
     }
 
-    private void configureMotors() {
-        m_shooterConfig.idleMode(IdleMode.kCoast)
-                    .inverted(true)
-                    .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-                    .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
+   // private void configureMotors() {
+   //     m_shooterConfig.idleMode(IdleMode.kCoast)
+    //                .inverted(true)
+    //                .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
+    //                .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
         
-        m_indexerUpperConfig.idleMode(IdleMode.kBrake)
-                    .inverted(true)
-                    .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-                    .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
+   //     m_indexerUpperConfig.idleMode(IdleMode.kBrake)
+  //                  .inverted(true)
+   //                 .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
+  //                  .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
 
-        m_indexerUpperConfig.idleMode(IdleMode.kBrake)
-            .inverted(false)
-            .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
+ //       m_indexerUpperConfig.idleMode(IdleMode.kBrake)
+ //           .inverted(false)
+    //        .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
+   //         .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
 
-        m_shooterConfig.closedLoop
-            .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
-            .p(Constants.ShooterConstants.kP_shooter)
-            .i(Constants.ShooterConstants.kI_shooter)
-            .d(Constants.ShooterConstants.kD_shooter)
-            .feedForward
+  ////      m_shooterConfig.closedLoop
+   //         .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
+   ////         .p(Constants.ShooterConstants.kP_shooter)
+   //         .i(Constants.ShooterConstants.kI_shooter)
+   //         .d(Constants.ShooterConstants.kD_shooter)
+   //         .feedForward
             // kV is now in Volts, so we multiply by the nominal voltage (12V)
-            .kV(12.0 / 5767, ClosedLoopSlot.kSlot1);
+   //         .kV(Constants.ShooterConstants.kV_shooter)
+  //          .kS(Constants.ShooterConstants.kS_shooter);
 
-        m_shooter.configure(m_shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        m_indexerUpper.configure(m_indexerUpperConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-        m_indexerLower.configure(m_indexerLowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
-    }
+  //      m_shooter.configure(m_shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+   //     m_indexerUpper.configure(m_indexerUpperConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+   //     m_indexerLower.configure(m_indexerLowerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+ //   }
 
-    public void seVelocity(double velocity) {
-       m_shooter.set(velocity);
-    }
-    
-    public void stopShooter() {
-        m_shooter.set(0);
-    }
+ //   public void seVelocity(double velocity) {
+  //     m_shooter.set(velocity);
+ //   }
 
-    @Override
-    public void periodic() {
-        m_currentVelocity = m_encoderShooter.getVelocity();
-        m_currentCurrent  = m_shooter.getOutputCurrent();
+ //   public void stopShooter() {
+  //      m_shooter.set(0);
+ //   }
+
+ //   @Override
+ //   public void periodic() {
+ //       m_currentVelocity = m_encoderShooter.getVelocity();
+ //       m_currentCurrent  = m_shooter.getOutputCurrent();
 
         // Update SmartDashboard
-        updateTelemetry();
-    }
+  //      updateTelemetry();
+  //  }
 
-    private void updateTelemetry() {
-        SmartDashboard.putNumber("hanger/velocity", m_currentVelocity);
-        SmartDashboard.putNumber("hanger/motor_current", m_currentCurrent);
-    }
+ //   private void updateTelemetry() {
+  //      SmartDashboard.putNumber("shooter/velocity", m_currentVelocity);
+  //      SmartDashboard.putNumber("shooter/motor_current", m_currentCurrent);
+  //  }
 
-}
+//}
