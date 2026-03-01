@@ -46,13 +46,13 @@ public final class Constants
                                                                          Meter.of(4)),
                                                              Rotation2d.fromDegrees(180));
   
-  public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(1),
-                                                                     Meter.of(4)),
+  public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(4.45),
+                                                                     Meter.of(3.86)),
                                                               Rotation2d.fromDegrees(0));
 
-  public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(1),
-                                                                     Meter.of(4)),
-                                                              Rotation2d.fromDegrees(0));                                                              
+  public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(12.1),
+                                                                     Meter.of(3.86)),
+                                                              Rotation2d.fromDegrees(180));                                                              
 
   public static final class DrivebaseConstants
   {
@@ -76,41 +76,47 @@ public final class Constants
 
   }
 
-  //public static final class ShooterConstants
+  public static final class ShooterConstants
   {
-   // public static final int CANID_SHOOTER = 32;
-    //public static final int CANID_INDEX_UPPER = 32;
-    //public static final int CANID_INDEX_LOWER = 32;
+    public static final int CANID_SHOOTER_LEFT = 10;
+    public static final int CANID_INDEX_UPPER_LEFT = 11;
+    public static final int CANID_INDEX_LOWER_LEFT = 12;
 
-    //public static final int MAXCURRENTLIMIT = 40; 
-    //public static final double RAMPRATESHOOTER = 1.0;
+    public static final int CANID_SHOOTER_RIGHT = 13;
+    public static final int CANID_INDEX_UPPER_RIGHT = 14;
+    public static final int CANID_INDEX_LOWER_RIGHT = 15;
 
-//    public static final double kP_shooter = 0.000035;
-  //  public static final double kI_shooter = 0.0;
-    //public static final double kD_shooter = 0.000015;
+    public static final int MAXCURRENTLIMIT = 40; 
+    public static final double RAMPRATESHOOTER = 0.0;
 
-//    public static final double kV_shooter = 0.000085;
-  //  public static final double kS_shooter = 0.10;
+    public static final double kP_shooter = 0.0000355;
+    public static final double kI_shooter = 0.0;
+    public static final double kD_shooter = 0.00000025;
+
+    public static final double kV_shooter = 0.0018;
+    public static final double kS_shooter = 0.10;
     
-    //public static final double maxVelocity = 3000;
+    public static final double maxVelocity = 2500;
   }
 
   public static final class VisionConstants
   {
+    public static final Boolean Enable = true;
+
     public static final String Camera1Name = "center";
-    public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(15), 0);
-    public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(13.5),
+    public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
+    public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(1.0),
                                                                             Units.inchesToMeters(0.0),
-                                                                            Units.inchesToMeters(8.0));
+                                                                            Units.inchesToMeters(17.5));
 
     public static final String Camera2Name = "left";
-    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(15), 0);
+    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
     public static final Translation3d Camera2Translation = new Translation3d(Units.inchesToMeters(13.5),
                                                                             Units.inchesToMeters(0.0),
                                                                             Units.inchesToMeters(8.0));
    
     public static final String Camera3Name = "right";
-    public static final Rotation3d Camera3Rotation = new Rotation3d(0, Units.degreesToRadians(15), 0);
+    public static final Rotation3d Camera3Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
     public static final Translation3d Camera3Translation = new Translation3d(Units.inchesToMeters(13.5),
                                                                             Units.inchesToMeters(0.0),
                                                                             Units.inchesToMeters(8.0));

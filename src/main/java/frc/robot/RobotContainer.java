@@ -56,7 +56,8 @@ public class RobotContainer
   final SwerveSubsystem       m_drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                                 "swerve/neo"));
   final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
-  //final ShooterSubsystem      m_shooter = new ShooterSubsystem();
+  final ShooterSubsystem      m_shooter = new ShooterSubsystem();
+
 
   // Create SmartDashboard chooser for autonomous and teleop routines
   private final SendableChooser<Command> m_chooserTeleop = new SendableChooser<>();
@@ -65,9 +66,9 @@ public class RobotContainer
    * Converts driver input into a field-relative ChassisSpeeds that is controlled by angular velocity.
    */
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(m_drivebase.getSwerveDrive(),
-                                                                () -> m_driver1.getRawAxis(1) * -1 * throttleTrans ,
-                                                                () -> m_driver1.getRawAxis(0) * -1 * throttleTrans)
-                                                            .withControllerRotationAxis(() -> m_driver1.getRawAxis(2) * -0.7 * throttleAngle)
+                                                                () -> m_driver1.getRawAxis(1) * -1.0 * throttleTrans ,
+                                                                () -> m_driver1.getRawAxis(0) * -1.0 * throttleTrans)
+                                                            .withControllerRotationAxis(() -> m_driver1.getRawAxis(4) * -0.7 * throttleAngle)
                                                             .deadband(OperatorConstants.DEADBAND)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true)
@@ -77,21 +78,21 @@ public class RobotContainer
   /**
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
    */
-  SwerveInputStream driveDirectAngle = driveAngularVelocity.copy().withControllerHeadingAxis(() -> m_driver1.getRawAxis(2) * -1,
-                                                                                             () -> m_driver1.getRawAxis(3) * -1)
+  SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()
+                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * 0.35,
+                                                                                      () -> m_driver1.getRawAxis(5) * 0.35)
                                                            .headingWhile(true);
 
   /**
    * Clone's the angular velocity input stream and converts it to a robotRelative input stream.
    */
   SwerveInputStream driveRobotOriented = driveAngularVelocity.copy().robotRelative(true)
-                                                             .allianceRelativeControl(true);
+                                                             .allianceRelativeControl(false);
 
   SwerveInputStream driveAngularVelocityKeyboard = SwerveInputStream.of(m_drivebase.getSwerveDrive(),
                                                                         () -> -m_driver1.getRawAxis(1),
                                                                         () -> -m_driver1.getRawAxis(0))
-                                                                    .withControllerRotationAxis(() -> m_driver1.getRawAxis(
-                                                                        2))
+
                                                                     .deadband(OperatorConstants.DEADBAND)
                                                                     .scaleTranslation(0.8)
                                                                     .allianceRelativeControl(true);
@@ -118,8 +119,8 @@ public class RobotContainer
    */
   public RobotContainer()
   {
-    throttleTrans = 1.0;
-    throttleAngle = 1.0;
+    throttleTrans = 0.25;
+    throttleAngle = 0.50;
     m_drivebase.getSwerveController().setMaximumChassisAngularVelocity(3.1416);
 
     // Configure the trigger bindings
@@ -151,9 +152,9 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-   // NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> m_driver1.getRawAxis(2)));
+   NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> Constants.ShooterConstants.maxVelocity));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
-//     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
+//     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("LowerToCoralStation", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionDown, m_coral, Constants.CoralConstants.positionStation, m_algae, Constants.AlgaeArmConstants.positionUp));
 //     NamedCommands.registerCommand("raise to L4", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionL4, m_coral, Constants.CoralConstants.positionReef, m_algae, Constants.AlgaeArmConstants.positionUp));
@@ -178,9 +179,9 @@ public class RobotContainer
 
 
     // Setup SmartDashboard chooser options
-    m_chooserTeleop.setDefaultOption("driveFieldOrientedDirectAngle", driveFieldOrientedDirectAngle);
+    m_chooserTeleop.setDefaultOption("driveRobotOrientedAngularVelocity", driveRobotOrientedAngularVelocity);
     m_chooserTeleop.addOption("driveFieldOrientedAnglularVelocity", driveFieldOrientedAnglularVelocity);
-    m_chooserTeleop.addOption("driveRobotOrientedAngularVelocity", driveRobotOrientedAngularVelocity);
+    m_chooserTeleop.addOption("driveFieldOrientedDirectAngle", driveFieldOrientedDirectAngle);
     SmartDashboard.putData("Teleop Mode", m_chooserTeleop);
 
     m_ChooserAuto.setDefaultOption("New Auto", m_drivebase.getAutonomousCommand("New Auto"));
@@ -219,7 +220,7 @@ public class RobotContainer
                                                                      new Constraints(Units.degreesToRadians(360),
                                                                                      Units.degreesToRadians(180))
                                            ));
-      m_driver2.button(1).onTrue(Commands.runOnce(() -> m_drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
+      // m_driver2.button(1).onTrue(Commands.runOnce(() -> m_drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
       //driverXbox.button(1).whileTrue(drivebase.sysIdDriveMotorCommand());
       //driverXbox.button(2).whileTrue(Commands.runEnd(() -> driveDirectAngleKeyboard.driveToPoseEnabled(true),
       //                                               () -> driveDirectAngleKeyboard.driveToPoseEnabled(false)));
@@ -247,7 +248,7 @@ public class RobotContainer
       m_driver1.button(2).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
        m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
       m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
-      m_driver1.button(9).whileTrue(NamedCommands.getCommand("Shoot"));
+      m_driver1.button(1).whileTrue(NamedCommands.getCommand("Shoot"));
       // m_driverSwitch.button(10).onTrue(m_drivebase.driveToDistanceCommand(2.0, 1.0));
     }
   }

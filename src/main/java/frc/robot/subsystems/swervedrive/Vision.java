@@ -338,23 +338,24 @@ public class Vision
     /**
      * Cameras
      */
-    CAM1(Constants.VisionConstants.Camera1Name,
+      CAM1(Constants.VisionConstants.Camera1Name,
          Constants.VisionConstants.Camera1Rotation,
          Constants.VisionConstants.Camera1Translation,
          Constants.VisionConstants.CameraStdTrans, 
-         Constants.VisionConstants.CameraStdRot),
-
-    CAM2(Constants.VisionConstants.Camera2Name,
-         Constants.VisionConstants.Camera2Rotation,
-         Constants.VisionConstants.Camera2Translation,
-         Constants.VisionConstants.CameraStdTrans, 
-         Constants.VisionConstants.CameraStdRot),
+         Constants.VisionConstants.CameraStdRot)
+    
+    // , CAM2(Constants.VisionConstants.Camera2Name,
+    //      Constants.VisionConstants.Camera2Rotation,
+    //      Constants.VisionConstants.Camera2Translation,
+    //      Constants.VisionConstants.CameraStdTrans, 
+    //      Constants.VisionConstants.CameraStdRot)
          
-    CAM3(Constants.VisionConstants.Camera2Name,
-         Constants.VisionConstants.Camera2Rotation,
-         Constants.VisionConstants.Camera2Translation,
-         Constants.VisionConstants.CameraStdTrans, 
-         Constants.VisionConstants.CameraStdRot);          
+    // , CAM3(Constants.VisionConstants.Camera2Name,
+    //      Constants.VisionConstants.Camera2Rotation,
+    //      Constants.VisionConstants.Camera2Translation,
+    //      Constants.VisionConstants.CameraStdTrans, 
+    //      Constants.VisionConstants.CameraStdRot)
+       ;          
 
     /**
      * Latency alert to use when high latency is detected.

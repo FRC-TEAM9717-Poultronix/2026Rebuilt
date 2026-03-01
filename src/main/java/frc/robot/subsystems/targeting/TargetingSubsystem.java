@@ -77,6 +77,8 @@ public class TargetingSubsystem extends SubsystemBase {
 
         Pose2d result = blueAlliance ? Constants.goalBlue : Constants.goalRed;
         
+    //    System.out.println("Targeting: " + result.getX());
+
         return Optional.of(result);
     }
 
@@ -117,6 +119,8 @@ public class TargetingSubsystem extends SubsystemBase {
     @Override
     public void periodic() {
 
+        if(!Constants.VisionConstants.Enable) return;
+        
         // Get transform to goal
         Pose2d goal = getGoalInMapFrame().get();
         Pose2d robot = m_drivebase.getPose();
