@@ -55,8 +55,8 @@ public class RobotContainer
   // The robot's subsystems and commands are defined here...
   final SwerveSubsystem       m_drivebase  = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(),
                                                                                 "swerve/neo"));
-  final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
-  final ShooterSubsystem      m_shooter = new ShooterSubsystem();
+  // final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
+  // final ShooterSubsystem      m_shooter = new ShooterSubsystem();
 
 
   // Create SmartDashboard chooser for autonomous and teleop routines
@@ -72,8 +72,9 @@ public class RobotContainer
                                                             .deadband(OperatorConstants.DEADBAND)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true)
-                                                            .aimWhile(m_driver1.button(4))
-                                                            .aim(m_targeting.getGoalInMapFrame().orElse(null));
+                                                            // .aimWhile(m_driver1.button(4))
+                                                            // .aim(m_targeting.getGoalInMapFrame().orElse(null))
+                                                            ;
 
   /**
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
@@ -152,7 +153,7 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-   NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> Constants.ShooterConstants.maxVelocity));
+  //  NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> Constants.ShooterConstants.maxVelocity));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
