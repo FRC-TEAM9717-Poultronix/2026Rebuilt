@@ -103,7 +103,7 @@ public final class Constants
   {
     public static final Boolean Enable = true;
 
-    public static final String Camera1Name = "center";
+    public static final String Camera1Name = "Center";
     public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
     public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(1.0),
                                                                             Units.inchesToMeters(0.0),
@@ -124,5 +124,17 @@ public final class Constants
     public static final Vector<N3>  CameraStdTrans = VecBuilder.fill(2, 2, 4);
     public static final Vector<N3>  CameraStdRot = VecBuilder.fill(0.5, 0.5, 1.0);
   }
+
+  public static final class IndexConstants
+  {
+    public static final int CANID_Index_Motor = 1;
+    public static final int MAXCURRENTLIMIT = 40; 
+    public static final double RAMPRATEINDEXER = 0.0;
+
+
+
+
+  }
+
 
 }

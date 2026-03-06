@@ -31,7 +31,6 @@ public class ShooterSubsystem extends SubsystemBase {
 
    private final SparkFlexConfig m_shooterLConfig, m_shooterRConfig;
    private final SparkFlexConfig m_indexerUpperLConfig, m_indexerUpperRConfig;
-
    private final SparkFlexConfig m_indexerLowerLConfig, m_indexerLowerRConfig;
 
    private final RelativeEncoder m_encoderShooterL, m_encoderShooterR;
