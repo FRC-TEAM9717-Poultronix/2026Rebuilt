@@ -80,8 +80,8 @@ public class RobotContainer
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
    */
   SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()
-                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * 0.35,
-                                                                                      () -> m_driver1.getRawAxis(5) * 0.35)
+                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * -1.0,
+                                                                                      () -> m_driver1.getRawAxis(5) * -1.0)
                                                            .headingWhile(true);
 
   /**
