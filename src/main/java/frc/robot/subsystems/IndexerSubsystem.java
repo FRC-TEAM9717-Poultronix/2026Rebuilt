@@ -34,11 +34,11 @@ public class IndexerSubsystem extends SubsystemBase {
    private double m_currentVelocity;
    private double m_currentCurrent;
 
-      public IndexerSubsystem() {
-       m_IndexMotor = new SparkMax(Constants.IndexConstants.CANID_Index_Motor, MotorType.kBrushless);
-         m_IndexMotorConfig = new SparkMaxConfig();
-         m_encoderIndexMotor = m_IndexMotor.getEncoder();
-       configureMotors();
+ public IndexerSubsystem() {
+  m_IndexMotor = new SparkMax(Constants.IndexConstants.CANID_Index_Motor, MotorType.kBrushless);
+  m_IndexMotorConfig = new SparkMaxConfig();
+  m_encoderIndexMotor = m_IndexMotor.getEncoder();
+   configureMotors();
     }
 
 private void configureMotors() {
@@ -52,7 +52,7 @@ private void configureMotors() {
      }
 
          public void setIndexerVelocity(double velocity) {
-      m_IndexMotor.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
+      m_IndexMotor.set(velocity);
    }
 
    public void setIndexer(double power) {

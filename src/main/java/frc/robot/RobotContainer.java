@@ -24,6 +24,8 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Intake.Intake;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
@@ -59,7 +61,7 @@ public class RobotContainer
   final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
   final ShooterSubsystem      m_shooter = new ShooterSubsystem();
   final IndexerSubsystem      m_indexer = new IndexerSubsystem();
-
+  final IntakeSubsystem       m_intake = new IntakeSubsystem();
 
   // Create SmartDashboard chooser for autonomous and teleop routines
   private final SendableChooser<Command> m_chooserTeleop = new SendableChooser<>();
@@ -155,6 +157,7 @@ public class RobotContainer
 
     // Named Commands
   NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
+  NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.power));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
@@ -247,10 +250,11 @@ public class RobotContainer
     } else
     {
       // BUTTON CONTROLS
-      m_driver1.button(2).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
-       m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
+      m_driver1.button(4).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
+     m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
       m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
-      m_driver1.button(1).whileTrue(NamedCommands.getCommand("Shoot"));
+      m_driver1.button(1).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
+      m_driver1.button(2).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
       // m_driverSwitch.button(10).onTrue(m_drivebase.driveToDistanceCommand(2.0, 1.0));
     }
   }

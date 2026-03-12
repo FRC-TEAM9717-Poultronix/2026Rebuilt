@@ -68,8 +68,8 @@ private void configureMotors() {
      }
 
          public void setIntakeVelocity(double velocity) {
-      m_DriveMotor.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
-      m_Intake.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
+      m_DriveMotor.set(velocity);
+      m_Intake.set(velocity);
 
    }
 
