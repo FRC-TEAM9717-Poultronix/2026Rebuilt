@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.subsystems.IndexerSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.subsystems.targeting.TargetingSubsystem;
@@ -57,6 +58,7 @@ public class RobotContainer
                                                                                 "swerve/neo"));
   final TargetingSubsystem    m_targeting = new TargetingSubsystem(m_drivebase);
   final ShooterSubsystem      m_shooter = new ShooterSubsystem();
+  final IndexerSubsystem      m_indexer = new IndexerSubsystem();
 
 
   // Create SmartDashboard chooser for autonomous and teleop routines
@@ -68,7 +70,7 @@ public class RobotContainer
   SwerveInputStream driveAngularVelocity = SwerveInputStream.of(m_drivebase.getSwerveDrive(),
                                                                 () -> m_driver1.getRawAxis(1) * -1.0 * throttleTrans ,
                                                                 () -> m_driver1.getRawAxis(0) * -1.0 * throttleTrans)
-                                                            .withControllerRotationAxis(() -> m_driver1.getRawAxis(4) * -0.7 * throttleAngle)
+                                                            .withControllerRotationAxis(() -> m_driver1.getRawAxis(4) * -1 * throttleAngle)
                                                             .deadband(OperatorConstants.DEADBAND)
                                                             .scaleTranslation(0.8)
                                                             .allianceRelativeControl(true)
@@ -79,8 +81,8 @@ public class RobotContainer
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
    */
   SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()
-                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * 0.5,
-                                                                                      () -> m_driver1.getRawAxis(5) * 0.5)
+                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * 1,
+                                                                                      () -> m_driver1.getRawAxis(5) * 1)
                                                            .headingWhile(true);
 
   /**
@@ -152,7 +154,7 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-   NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, () -> Constants.ShooterConstants.maxVelocity));
+  NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));

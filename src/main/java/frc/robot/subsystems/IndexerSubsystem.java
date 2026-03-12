@@ -26,8 +26,7 @@ import frc.robot.Constants;
 import frc.robot.Constants.HangerConstants;
 
 public class IndexerSubsystem extends SubsystemBase {
-    private final SparkMax m_IndexMotor = new SparkMax(Constants.IndexConstants.CANID_Index_Motor, MotorType.kBrushless);
-
+    private final SparkMax m_IndexMotor;
    private final SparkMaxConfig m_IndexMotorConfig;
 
       private final RelativeEncoder m_encoderIndexMotor;

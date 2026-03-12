@@ -126,12 +126,27 @@ public class ShooterSubsystem extends SubsystemBase {
       m_shooterR.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
    }
 
-   public void setIndexer(double power) {
-       m_indexerLowerL.setVoltage(power);
+   public double getVelocityLeft() {
+     return m_encoderShooterL.getVelocity();
+   }
+
+      public double getVelocityRight() {
+     return m_encoderShooterR.getVelocity();
+   }
+
+
+
+
+   public void setIndexerR(double power) {
        m_indexerLowerR.setVoltage(power);
-       m_indexerUpperL.setVoltage(power);
        m_indexerUpperR.setVoltage(power);
    }   
+
+      public void setIndexerL(double power) {
+       m_indexerLowerL.setVoltage(power);
+       m_indexerUpperL.setVoltage(power);
+   }   
+
 
    public void stopShooter() {
        m_shooterL.set(0);

@@ -1,21 +1,20 @@
-package frc.robot.commands.Shooter;
+package frc.robot.commands.Intake;
 
 import java.util.function.DoubleSupplier;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.ShooterConstants;
 import frc.robot.subsystems.IndexerSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 
 
-public class Shoot extends Command{
- private ShooterSubsystem m_shooter;
- private IndexerSubsystem m_Indexer;
+public class Intake extends Command{
+ private IntakeSubsystem m_intake;
  private final DoubleSupplier  m_velocity;
 
-  public Shoot(ShooterSubsystem Shooter, IndexerSubsystem m_Indexer,  DoubleSupplier velocity)
+  public Intake (IntakeSubsystem Intake, DoubleSupplier velocity)
   {
-    m_shooter  = Shooter; 
+    m_intake  = Intake; 
     m_velocity = velocity;
 
     addRequirements();
@@ -30,22 +29,15 @@ public class Shoot extends Command{
   @Override
   public void execute() {
    Double desiredVelocity = m_velocity.getAsDouble();
-   m_shooter.setShooter(desiredVelocity);
-  if(m_shooter.getVelocityLeft() > desiredVelocity - 100) {
-      m_shooter.setIndexerL(6);
-  }
-  if(m_shooter.getVelocityRight() > desiredVelocity - 100) { 
-      m_shooter.setIndexerR(6);   
-   }
-   m_Indexer.setIndexer(6);
+   m_intake.setIntakeVelocity(desiredVelocity);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("shooter end");
+    System.out.println("intake end");
 
-    m_shooter.stopShooter();
+    m_intake.stopIntake();
   }
 
   // Returns true when the command should end.

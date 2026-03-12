@@ -131,10 +131,15 @@ public final class Constants
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINDEXER = 0.0;
 
-
-
-
   }
 
+  public static final class IntakeConstants
+  {
+    public static final int CANID_Drive_Motor = 2;
+    public static final int CANID_Intake_Left = 3;
+    public static final int CANID_Intake_Right = 4;
+    public static final int MAXCURRENTLIMIT = 40; 
+    public static final double RAMPRATEINTAKE = 0.0;
+  }
 
 }
