@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Shooter.Shoot;
+import frc.robot.commands.Extend.Extend;
 import frc.robot.commands.Intake.Intake;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -158,6 +159,7 @@ public class RobotContainer
     // Named Commands
   NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
   NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.power));
+  NamedCommands.registerCommand("Extend", new Extend(m_intake));
     //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
 //     NamedCommands.registerCommand("RaiseToHighAlgae", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionA3, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));
@@ -251,10 +253,11 @@ public class RobotContainer
     {
       // BUTTON CONTROLS
       m_driver1.button(4).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
-     m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
+      m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
       m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
       m_driver1.button(1).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
       m_driver1.button(2).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
+      m_driver1.button(5).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a switch with button board.
       // m_driverSwitch.button(10).onTrue(m_drivebase.driveToDistanceCommand(2.0, 1.0));
     }
   }

@@ -127,7 +127,7 @@ public final class Constants
 
   public static final class IndexConstants
   {
-    public static final int CANID_Index_Motor = 1;
+    public static final int CANID_Index_Motor = 30;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINDEXER = 0.0;
     public static final double power = 0.45;
@@ -136,9 +136,8 @@ public final class Constants
 
   public static final class IntakeConstants
   {
-    public static final int CANID_Drive_Motor = 2;
-    public static final int CANID_Intake_Left = 3;
-    public static final int CANID_Intake_Right = 4;
+    public static final int CANID_Drive_Motor = 21;
+    public static final int CANID_Intake = 20;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINTAKE = 0.0;
     public static final double power = 0.75;

@@ -29,7 +29,7 @@ public class Intake extends Command{
   @Override
   public void execute() {
    Double desiredVelocity = m_velocity.getAsDouble();
-   m_intake.setIntakeVelocity(desiredVelocity);
+   m_intake.setIntakePower(desiredVelocity);
   }
 
   // Called once the command ends or is interrupted.
