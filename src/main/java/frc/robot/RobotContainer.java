@@ -158,10 +158,10 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-  NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
-  NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.power));
-  NamedCommands.registerCommand("Extend", new Extend(m_intake));
-  NamedCommands.registerCommand("Retract", new Extend(m_intake));
+    NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
+    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.power));
+    NamedCommands.registerCommand("Extend", new Extend(m_intake));
+    NamedCommands.registerCommand("Retract", new Retract(m_intake));
 
   //     NamedCommands.registerCommand("LowerToProcessor", new ElevatorPosition(m_elevator, Constants.ElevatorConstants.positionProcessor, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionProcessor));
 //     NamedCommands.registerCommand("RaiseToLowAlgae", new ElevatorPositio(m_elevator, Constants.ElevatorConstants.positionA2, m_coral, Constants.CoralConstants.positionUp, m_algae, Constants.AlgaeArmConstants.positionReef));

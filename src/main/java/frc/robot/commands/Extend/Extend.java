@@ -29,6 +29,7 @@ public class Extend extends Command {
   public void initialize()
   {
     m_state = State.start;
+    m_startTime =  System.currentTimeMillis();
     m_DriveMotor.disableSoftLimits();
   }
 
@@ -73,7 +74,7 @@ public class Extend extends Command {
   public void end(boolean interrupted)
   {
     m_DriveMotor.stopDrive();;
-    System.out.println("Homing Ended!");
+    System.out.println("Extend Ended!");
   }
 
 }
