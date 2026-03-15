@@ -159,7 +159,7 @@ public class RobotContainer
 
     // Named Commands
     NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity));
-    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.power));
+    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.powerI));
     NamedCommands.registerCommand("Extend", new Extend(m_intake));
     NamedCommands.registerCommand("Retract", new Retract(m_intake));
 
@@ -254,13 +254,13 @@ public class RobotContainer
     } else
     {
       // BUTTON CONTROLS
-      m_driver1.button(4).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
-      m_driver1.button(11).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
-      m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
-      m_switchBox.button(100).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
-      m_switchBox.button(100).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
-      m_buttonBox.button(100).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
-      m_buttonBox.button(100).whileTrue(NamedCommands.getCommand("Retract"));// adjust to have on a Button with button board.
+      m_driver1.button(8).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
+      m_driver1.button(7).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
+      // m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
+      m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
+      m_buttonBox.button(4).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
+      m_buttonBox.button(1).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
+      m_buttonBox.button(2).whileTrue(NamedCommands.getCommand("Retract"));// adjust to have on a Button with button board.
     }
   }
       

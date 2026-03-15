@@ -42,16 +42,16 @@ public final class Constants
   public static final Pose2d startPoseBlue = new Pose2d(new Translation2d(Meter.of(1),
                                                                           Meter.of(4)),
                                                               Rotation2d.fromDegrees(0));
-  public static final Pose2d startPoseRed = new Pose2d(new Translation2d(Meter.of(16),
-                                                                         Meter.of(4)),
+  public static final Pose2d startPoseRed = new Pose2d(new Translation2d(Meter.of(13),
+                                                                         Meter.of(4.03)),
                                                              Rotation2d.fromDegrees(180));
   
   public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(4.45),
-                                                                     Meter.of(3.86)),
+                                                                     Meter.of(4.03)),
                                                               Rotation2d.fromDegrees(0));
 
-  public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(12.1),
-                                                                     Meter.of(3.86)),
+  public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(11.92),
+                                                                     Meter.of(4.03)),
                                                               Rotation2d.fromDegrees(180));                                                              
 
   public static final class DrivebaseConstants
@@ -89,14 +89,15 @@ public final class Constants
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATESHOOTER = 0.0;
 
-    public static final double kP_shooter = 0.0000355;
+    public static final double kP_shooter = 0.0005;
     public static final double kI_shooter = 0.0;
-    public static final double kD_shooter = 0.00000025;
+    public static final double kD_shooter = 0.005;
 
-    public static final double kV_shooter = 0.0018;
+    public static final double kV_shooterL = 0.0018;
+    public static final double kV_shooterR = 0.0031;
     public static final double kS_shooter = 0.10;
     
-    public static final double maxVelocity = 2500;
+    public static final double maxVelocity = 2750;
   }
 
   public static final class VisionConstants
@@ -104,10 +105,10 @@ public final class Constants
     public static final Boolean Enable = true;
 
     public static final String Camera1Name = "Center";
-    public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
-    public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(1.0),
+    public static final Rotation3d Camera1Rotation = new Rotation3d(0, Units.degreesToRadians(-10.0), 0);
+    public static final Translation3d Camera1Translation = new Translation3d(Units.inchesToMeters(-1.0),
                                                                             Units.inchesToMeters(0.0),
-                                                                            Units.inchesToMeters(17.5));
+                                                                            Units.inchesToMeters(18.5));
 
     public static final String Camera2Name = "left";
     public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
@@ -140,7 +141,9 @@ public final class Constants
     public static final int CANID_Intake = 20;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINTAKE = 0.0;
-    public static final double power = 0.75;
+    public static final double powerD = 0.75;
+    public static final double powerI = 0.4;
+
 
   }
 

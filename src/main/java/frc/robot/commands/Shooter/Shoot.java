@@ -13,9 +13,10 @@ public class Shoot extends Command{
  private IndexerSubsystem m_Indexer;
  private final DoubleSupplier  m_velocity;
 
-  public Shoot(ShooterSubsystem Shooter, IndexerSubsystem m_Indexer,  DoubleSupplier velocity)
+  public Shoot(ShooterSubsystem shooter, IndexerSubsystem indexer,  DoubleSupplier velocity)
   {
-    m_shooter  = Shooter; 
+    m_shooter  = shooter; 
+    m_Indexer = indexer;
     m_velocity = velocity;
 
     addRequirements();
@@ -24,20 +25,22 @@ public class Shoot extends Command{
 // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+  Double desiredVelocity = m_velocity.getAsDouble();
+   m_shooter.setShooter(desiredVelocity);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
    Double desiredVelocity = m_velocity.getAsDouble();
-   m_shooter.setShooter(desiredVelocity);
+  //  m_shooter.setShooter(desiredVelocity);
   if(m_shooter.getVelocityLeft() > desiredVelocity - 100) {
-      m_shooter.setIndexerL(6);
+      m_shooter.setIndexerL(0.7);
   }
   if(m_shooter.getVelocityRight() > desiredVelocity - 100) { 
-      m_shooter.setIndexerR(6);   
+      m_shooter.setIndexerR(0.7);   
    }
-   m_Indexer.setIndexer(6);
+  m_Indexer.setIndexer(6);
   }
 
   // Called once the command ends or is interrupted.
@@ -46,6 +49,7 @@ public class Shoot extends Command{
     System.out.println("shooter end");
 
     m_shooter.stopShooter();
+    m_Indexer.stopIndexer();
   }
 
   // Returns true when the command should end.

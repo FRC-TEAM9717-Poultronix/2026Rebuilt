@@ -70,6 +70,7 @@ private final SparkFlex m_Intake;
 
    public void stopDrive() {
        m_DriveMotor.set(0);
+       m_DriveMotor.clearFaults();
 
    }
 

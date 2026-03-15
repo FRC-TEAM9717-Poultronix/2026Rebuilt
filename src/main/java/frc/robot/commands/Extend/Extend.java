@@ -41,7 +41,7 @@ public class Extend extends Command {
     
     switch (m_state) {
       case start:
-        m_DriveMotor.setDrivePower(-0.1);
+        m_DriveMotor.setDrivePower(0.1);
         m_state = State.start_out;
         break;
       case start_out:

@@ -41,18 +41,24 @@ public class Retract extends Command {
     
     switch (m_state) {
       case start:
-        m_DriveMotor.setDrivePower(0.1);
+        System.out.println("Retract Started!");
+        m_DriveMotor.setDrivePower(-.15);
         m_state = State.start_out;
         break;
       case start_out:
+          System.out.println("Retract Out!");
+          m_DriveMotor.setDrivePower(-0.15);
       if(currentTime > m_startTime + 100)
         {
           m_state = State.homing;
         }
         break;
       case homing:
+          System.out.println("Retract Homing!");
+          m_DriveMotor.setDrivePower(-0.15);
         if(m_DriveMotor.isStalled())
         {
+          
           m_DriveMotor.setHome();
           m_state = State.finished;
         }
@@ -73,7 +79,7 @@ public class Retract extends Command {
   @Override
   public void end(boolean interrupted)
   {
-    m_DriveMotor.stopDrive();;
+    m_DriveMotor.stopDrive();
     System.out.println("Retract Ended!");
   }
 

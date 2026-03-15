@@ -35,6 +35,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
    private final RelativeEncoder m_encoderShooterL, m_encoderShooterR;
 
+   private double m_currentSetpointL, m_currentSetpointR;
    private double m_currentVelocityL, m_currentVelocityR;
    private double m_currentCurrentL, m_currentCurrentR;
     
@@ -88,7 +89,7 @@ public class ShooterSubsystem extends SubsystemBase {
            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
 
        m_indexerLowerRConfig.idleMode(IdleMode.kBrake)
-           .inverted(true)
+           .inverted(false)
            .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
 
@@ -99,7 +100,7 @@ public class ShooterSubsystem extends SubsystemBase {
            .d(Constants.ShooterConstants.kD_shooter)
            .feedForward
             // kV is now in Volts, so we multiply by the nominal voltage (12V)
-           .kV(Constants.ShooterConstants.kV_shooter)
+           .kV(Constants.ShooterConstants.kV_shooterL)
            .kS(Constants.ShooterConstants.kS_shooter);
 
       m_shooterRConfig.closedLoop
@@ -109,7 +110,7 @@ public class ShooterSubsystem extends SubsystemBase {
            .d(Constants.ShooterConstants.kD_shooter)
            .feedForward
             // kV is now in Volts, so we multiply by the nominal voltage (12V)
-           .kV(Constants.ShooterConstants.kV_shooter)
+           .kV(Constants.ShooterConstants.kV_shooterR)
            .kS(Constants.ShooterConstants.kS_shooter);
 
        m_shooterL.configure(m_shooterLConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
@@ -122,8 +123,8 @@ public class ShooterSubsystem extends SubsystemBase {
       }
 
    public void setShooter(double velocity) {
-      m_shooterL.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
-      m_shooterR.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
+       m_shooterL.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
+       m_shooterR.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
    }
 
    public double getVelocityLeft() {
@@ -143,8 +144,8 @@ public class ShooterSubsystem extends SubsystemBase {
    }   
 
       public void setIndexerL(double power) {
-       m_indexerLowerL.setVoltage(power);
-       m_indexerUpperL.setVoltage(power);
+       m_indexerLowerL.set(power);
+       m_indexerUpperL.set(power);
    }   
 
 
@@ -159,16 +160,22 @@ public class ShooterSubsystem extends SubsystemBase {
 
    @Override
    public void periodic() {
+       m_currentSetpointL = m_shooterL.getClosedLoopController().getSetpoint();
+       m_currentSetpointR = m_shooterR.getClosedLoopController().getSetpoint();
        m_currentVelocityL = m_encoderShooterL.getVelocity();
+       m_currentVelocityR = m_encoderShooterR.getVelocity();
        m_currentCurrentL  = m_shooterL.getOutputCurrent();
+       m_currentCurrentR  = m_shooterR.getOutputCurrent();       
 
         // Update SmartDashboard
        updateTelemetry();
    }
 
    private void updateTelemetry() {
+      SmartDashboard.putNumber("shooter/setpointL", m_currentSetpointL);
       SmartDashboard.putNumber("shooter/velocityL", m_currentVelocityL);
       SmartDashboard.putNumber("shooter/currentL", m_currentCurrentL);
+      SmartDashboard.putNumber("shooter/setpointR", m_currentSetpointR);      
       SmartDashboard.putNumber("shooter/velocityR", m_currentVelocityR);
       SmartDashboard.putNumber("shooter/currentR", m_currentCurrentR); 
    }
