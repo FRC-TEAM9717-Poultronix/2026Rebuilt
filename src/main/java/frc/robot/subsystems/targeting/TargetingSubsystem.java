@@ -88,6 +88,17 @@ public class TargetingSubsystem extends SubsystemBase {
         return m_transformToGoal;
     }
 
+    // Returns distance to goal
+    public Optional<Double> getDistanceToGoal()
+    {
+        double x = m_transformToGoal.get().getTranslation().getX();
+        double y = m_transformToGoal.get().getTranslation().getY();
+
+        double result = Math.sqrt(x*x + y*y);
+
+        return Optional.of(result);
+    }
+
     // Returns Pose of nearest Target in Robot Frame
     public  Optional<Transform3d> getTransformToNearestTargetInRobotFrame()
     {
