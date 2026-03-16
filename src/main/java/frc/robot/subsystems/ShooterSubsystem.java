@@ -139,13 +139,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
    public void setIndexerR(double power) {
-       m_indexerLowerR.setVoltage(power);
-       m_indexerUpperR.setVoltage(power);
+       m_indexerLowerR.setVoltage(Constants.ShooterConstants.power);
+       m_indexerUpperR.setVoltage(Constants.ShooterConstants.power);
    }   
 
       public void setIndexerL(double power) {
-       m_indexerLowerL.set(power);
-       m_indexerUpperL.set(power);
+       m_indexerLowerL.set(Constants.ShooterConstants.power);
+       m_indexerUpperL.set(Constants.ShooterConstants.power);
    }   
 
 

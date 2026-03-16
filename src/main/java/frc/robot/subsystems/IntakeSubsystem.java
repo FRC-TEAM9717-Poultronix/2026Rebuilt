@@ -14,9 +14,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase {
- private final SparkFlex m_DriveMotor;
-  private final SparkFlexConfig m_DriveMotorConfig;
-   private final RelativeEncoder m_encoderDriveMotor;
+ private final SparkFlex m_DriveMotorL;
+  private final SparkFlexConfig m_DriveMotorConfigL;
+   private final RelativeEncoder m_encoderDriveMotorL;
+ private final SparkFlex m_DriveMotorR;
+  private final SparkFlexConfig m_DriveMotorConfigR;
+   private final RelativeEncoder m_encoderDriveMotorR;
+ 
    
 private final SparkFlex m_Intake;
  private final SparkFlexConfig m_IntakeConfig;
@@ -27,10 +31,13 @@ private final SparkFlex m_Intake;
    private boolean m_isHomed;
 
     public IntakeSubsystem() {
-       m_DriveMotor = new SparkFlex(Constants.IntakeConstants.CANID_Drive_Motor, MotorType.kBrushless);
-         m_DriveMotorConfig = new SparkFlexConfig();
-         m_encoderDriveMotor = m_DriveMotor.getEncoder();
+       m_DriveMotorL = new SparkFlex(Constants.IntakeConstants.CANID_Drive_MotorL, MotorType.kBrushless);
+         m_DriveMotorConfigL = new SparkFlexConfig();
+         m_encoderDriveMotorL = m_DriveMotorL.getEncoder();
 
+       m_DriveMotorR = new SparkFlex(Constants.IntakeConstants.CANID_Drive_MotorR, MotorType.kBrushless);
+         m_DriveMotorConfigR = new SparkFlexConfig();
+         m_encoderDriveMotorR = m_DriveMotorR.getEncoder();
 
        m_Intake = new SparkFlex(Constants.IntakeConstants.CANID_Intake, MotorType.kBrushless);
          m_IntakeConfig = new SparkFlexConfig();
@@ -42,18 +49,24 @@ private final SparkFlex m_Intake;
     }
 
   private void configureMotors() {
-       m_DriveMotorConfig.idleMode(IdleMode.kCoast)
+       m_DriveMotorConfigL.idleMode(IdleMode.kCoast)
             .inverted(false)
             .smartCurrentLimit(Constants.IntakeConstants.MAXCURRENTLIMIT)
             .openLoopRampRate(Constants.IntakeConstants.RAMPRATEINTAKE);
 
+        m_DriveMotorConfigR.idleMode(IdleMode.kCoast)
+            .inverted(true)
+            .smartCurrentLimit(Constants.IntakeConstants.MAXCURRENTLIMIT)
+            .openLoopRampRate(Constants.IntakeConstants.RAMPRATEINTAKE);
+           
        m_IntakeConfig.idleMode(IdleMode.kCoast)
             .inverted(false)
             .smartCurrentLimit(Constants.IntakeConstants.MAXCURRENTLIMIT)
             .openLoopRampRate(Constants.IntakeConstants.RAMPRATEINTAKE);
 
 
-       m_DriveMotor.configure(m_DriveMotorConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+       m_DriveMotorL.configure(m_DriveMotorConfigL, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+       m_DriveMotorR.configure(m_DriveMotorConfigR, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
        m_Intake.configure(m_IntakeConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
     }
@@ -64,14 +77,16 @@ private final SparkFlex m_Intake;
    }
 
   public void setDrivePower(double power) {
-      m_DriveMotor.set(power);
+      m_DriveMotorL.set(power);
+    m_DriveMotorR.set(power);
 
    }
 
    public void stopDrive() {
-       m_DriveMotor.set(0);
-       m_DriveMotor.clearFaults();
-
+       m_DriveMotorL.set(0);
+       m_DriveMotorL.clearFaults();
+       m_DriveMotorR.set(0);
+       m_DriveMotorR.clearFaults();
    }
 
    public void stopIntake() {
@@ -86,23 +101,28 @@ private final SparkFlex m_Intake;
         newLimit.forwardSoftLimitEnabled(false)
                 .reverseSoftLimitEnabled(false);
         
-        m_DriveMotorConfig.apply(newLimit);
-        m_DriveMotor.configure(m_DriveMotorConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+        m_DriveMotorConfigL.apply(newLimit);
+        m_DriveMotorL.configure(m_DriveMotorConfigL, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+        m_DriveMotorConfigR.apply(newLimit);
+        m_DriveMotorR.configure(m_DriveMotorConfigR, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+
 
         return true;
     }
 
     public double getvelocityDrive() {
-        return m_encoderDriveMotor.getVelocity();
+        return m_encoderDriveMotorL.getVelocity();
     }
 
     public double getvelocityIntake() {
         return m_encoderIntake.getVelocity();
+
     }
 
     public boolean isStalled() {
-        return m_DriveMotor.getWarnings().stall;
+        return m_DriveMotorL.getWarnings().stall;
     }
+
 
     public boolean setHome() {
         
@@ -113,10 +133,13 @@ private final SparkFlex m_Intake;
 
    @Override
    public void periodic() {
-       m_currentVelocity = m_encoderDriveMotor.getVelocity();
-       m_currentCurrent  = m_DriveMotor.getOutputCurrent();
+       m_currentVelocity = m_encoderDriveMotorL.getVelocity();
+       m_currentCurrent  = m_DriveMotorL.getOutputCurrent();
 
-     m_currentVelocity = m_encoderIntake.getVelocity();
+       m_currentVelocity = m_encoderDriveMotorR.getVelocity();
+       m_currentCurrent  = m_DriveMotorR.getOutputCurrent();
+
+       m_currentVelocity = m_encoderIntake.getVelocity();
        m_currentCurrent  = m_Intake.getOutputCurrent();
 
 
