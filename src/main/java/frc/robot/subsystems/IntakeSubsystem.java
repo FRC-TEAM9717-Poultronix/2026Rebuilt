@@ -120,7 +120,9 @@ private final SparkFlex m_Intake;
     }
 
     public boolean isStalled() {
-        return m_DriveMotorL.getWarnings().stall;
+       boolean stalled = m_DriveMotorL.getWarnings().stall || m_DriveMotorR.getWarnings().stall; 
+       return stalled;
+        //return m_DriveMotorL.getWarnings().stall;
     }
 
 
