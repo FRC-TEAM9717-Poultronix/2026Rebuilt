@@ -76,22 +76,22 @@ public class ShooterSubsystem extends SubsystemBase {
        m_indexerUpperLConfig.idleMode(IdleMode.kBrake)
             .inverted(true)
             .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
+            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTERINTAKE);
 
        m_indexerUpperRConfig.idleMode(IdleMode.kBrake)
             .inverted(false)
             .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);
+            .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTERINTAKE);
 
       m_indexerLowerLConfig.idleMode(IdleMode.kBrake)
            .inverted(true)
            .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-           .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
+           .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTERINTAKE);               
 
        m_indexerLowerRConfig.idleMode(IdleMode.kBrake)
            .inverted(false)
            .smartCurrentLimit(Constants.ShooterConstants.MAXCURRENTLIMIT)
-           .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTER);               
+           .openLoopRampRate(Constants.ShooterConstants.RAMPRATESHOOTERINTAKE);               
 
        m_shooterLConfig.closedLoop
            .feedbackSensor(FeedbackSensor.kPrimaryEncoder)
@@ -139,13 +139,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
 
    public void setIndexerR(double power) {
-       m_indexerLowerR.setVoltage(power);
-       m_indexerUpperR.setVoltage(power);
+       m_indexerLowerR.set(Constants.ShooterConstants.power);
+       m_indexerUpperR.set(Constants.ShooterConstants.power);
    }   
 
       public void setIndexerL(double power) {
-       m_indexerLowerL.set(power);
-       m_indexerUpperL.set(power);
+       m_indexerLowerL.set(Constants.ShooterConstants.power);
+       m_indexerUpperL.set(Constants.ShooterConstants.power);
    }   
 
 

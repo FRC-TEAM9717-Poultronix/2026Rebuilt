@@ -33,7 +33,7 @@ public class Shoot extends Command{
   @Override
   public void execute() {
    Double desiredVelocity = m_velocity.getAsDouble();
-  //  m_shooter.setShooter(desiredVelocity);
+    m_shooter.setShooter(desiredVelocity);
   if(m_shooter.getVelocityLeft() > desiredVelocity - 100) {
       m_shooter.setIndexerL(0.7);
   }

@@ -88,6 +88,7 @@ public final class Constants
 
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATESHOOTER = 0.0;
+    public static final double RAMPRATESHOOTERINTAKE = 0;
 
     public static final double kP_shooter = 0.0005;
     public static final double kI_shooter = 0.0;
@@ -96,7 +97,8 @@ public final class Constants
     public static final double kV_shooterL = 0.0018;
     public static final double kV_shooterR = 0.0031;
     public static final double kS_shooter = 0.10;
-    
+  
+    public static final double power = 0.8;
     public static final double maxVelocity = 2750;
   }
 
@@ -131,13 +133,14 @@ public final class Constants
     public static final int CANID_Index_Motor = 30;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINDEXER = 0.0;
-    public static final double power = 0.45;
+    public static final double power = 0.55;
 
   }
 
   public static final class IntakeConstants
   {
-    public static final int CANID_Drive_Motor = 21;
+    public static final int CANID_Drive_Motor_L = 21;
+    public static final int CANID_Drive_Motor_R = 22;
     public static final int CANID_Intake = 20;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINTAKE = 0.0;
