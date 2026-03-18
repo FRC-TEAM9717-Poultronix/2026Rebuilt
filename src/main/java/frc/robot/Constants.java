@@ -90,7 +90,7 @@ public final class Constants
     public static final double RAMPRATESHOOTER = 0.0;
     public static final double RAMPRATESHOOTERINTAKE = 0;
 
-    public static final double kP_shooter = 0.0005;
+    public static final double kP_shooter = 0.0008;
     public static final double kI_shooter = 0.0;
     public static final double kD_shooter = 0.005;
 
