@@ -99,7 +99,7 @@ public final class Constants
     public static final double kS_shooter = 0.10;
   
     public static final double power = 0.8;
-    public static final double maxVelocity = 2750;
+    public static final double maxVelocity = 3000;
   }
 
   public static final class VisionConstants
