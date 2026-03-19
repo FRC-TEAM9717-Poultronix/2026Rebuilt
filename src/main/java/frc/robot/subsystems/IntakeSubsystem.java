@@ -99,14 +99,14 @@ private final SparkFlex m_Intake;
     public boolean disableSoftLimits() {
         m_isHomed = false;
         
-        SoftLimitConfig newLimit = new SoftLimitConfig();
-        newLimit.forwardSoftLimitEnabled(false)
-                .reverseSoftLimitEnabled(false);
+        // SoftLimitConfig newLimit = new SoftLimitConfig();
+        // newLimit.forwardSoftLimitEnabled(false)
+        //         .reverseSoftLimitEnabled(false);
         
-        m_DriveMotorLConfig.apply(newLimit);
-        m_DriveMotorRConfig.apply(newLimit);
-        m_DriveMotorL.configure(m_DriveMotorLConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
-        m_DriveMotorR.configure(m_DriveMotorRConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+        // m_DriveMotorLConfig.apply(newLimit);
+        // m_DriveMotorRConfig.apply(newLimit);
+        // m_DriveMotorL.configure(m_DriveMotorLConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
+        // m_DriveMotorR.configure(m_DriveMotorRConfig, ResetMode.kNoResetSafeParameters, PersistMode.kNoPersistParameters);
 
         return true;
     }

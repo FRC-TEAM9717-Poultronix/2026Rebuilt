@@ -195,7 +195,7 @@ public class RobotContainer
     m_chooserTeleop.addOption("driveFieldOrientedDirectAngle", driveFieldOrientedDirectAngle);
     SmartDashboard.putData("Teleop Mode", m_chooserTeleop);
 
-    m_ChooserAuto.setDefaultOption("New Auto", m_drivebase.getAutonomousCommand("New Auto"));
+    m_ChooserAuto.setDefaultOption("RedOurNutrealCleanup", m_drivebase.getAutonomousCommand("RedOurNutrealCleanup"));
     // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));
     // m_ChooserAuto.addOption("RIGHT BACK 3 L4", m_drivebase.getAutonomousCommand("RIGHT BACK 3 L4"));
     // m_ChooserAuto.addOption("3 Front Right L4", m_drivebase.getAutonomousCommand("RIGHT FRONT 3 L4"));

@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Blue Homefield Play"
+            "pathName": "BlueOurNutrealCleanup"
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 100.0
+            "name": "Shoot"
           }
         }
       ]
