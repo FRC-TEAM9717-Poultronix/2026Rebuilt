@@ -26,7 +26,7 @@ public class AutoShoot extends Command{
     m_velocity = velocity;
 
 
-    addRequirements();
+    addRequirements(m_shooter, m_Indexer);  
   }
 
 // Called when the command is initially scheduled.
@@ -36,8 +36,6 @@ public class AutoShoot extends Command{
    m_shooter.setShooter(desiredVelocity);
     m_startTime =  System.currentTimeMillis();
 
-   
-
    m_leftLocked = false;
    m_rightLocked = false;
   }
@@ -45,6 +43,9 @@ public class AutoShoot extends Command{
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    System.out.println("trying to shoot :(");
+
    Double desiredVelocity = m_velocity.getAsDouble();
     m_shooter.setShooter(desiredVelocity);
 

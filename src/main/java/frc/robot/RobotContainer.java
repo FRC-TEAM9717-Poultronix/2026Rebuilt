@@ -195,79 +195,93 @@ public class RobotContainer
     m_chooserTeleop.addOption("driveFieldOrientedDirectAngle", driveFieldOrientedDirectAngle);
     SmartDashboard.putData("Teleop Mode", m_chooserTeleop);
 
-    m_ChooserAuto.setDefaultOption("RedOurNutrealCleanup", m_drivebase.getAutonomousCommand("RedOurNutrealCleanup"));
-    // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));
-    // m_ChooserAuto.addOption("RIGHT BACK 3 L4", m_drivebase.getAutonomousCommand("RIGHT BACK 3 L4"));
-    // m_ChooserAuto.addOption("3 Front Right L4", m_drivebase.getAutonomousCommand("RIGHT FRONT 3 L4"));
-    // m_ChooserAuto.addOption("3 Front Left L4", m_drivebase.getAutonomousCommand("LEFT FRONT 3 L4"));
-    // m_ChooserAuto.addOption("Middle L4 and net", m_drivebase.getAutonomousCommand("MIDDLE algae and L4"));
-    //  m_ChooserAuto.addOption("3 Front Left L4 REVISED", m_drivebase.getAutonomousCommand("LEFT FRONT 3 L4 REVISED"));
-
-
-    SmartDashboard.putData("Auto Mode", m_ChooserAuto);
-
-
-    if (RobotBase.isSimulation())
-    {
-      m_drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
-    } else
-    {
-      m_drivebase.setDefaultCommand(getTeleopDriveCommand());
-    }
-
-    if (Robot.isSimulation())
-    {
-      Pose2d target = new Pose2d(new Translation2d(1, 4),
-                                 Rotation2d.fromDegrees(90));
-      //drivebase.getSwerveDrive().field.getObject("targetPose").setPose(target);
-      driveDirectAngleKeyboard.driveToPose(() -> target,
-                                           new ProfiledPIDController(5,
-                                                                     0,
-                                                                     0,
-                                                                     new Constraints(5, 2)),
-                                           new ProfiledPIDController(5,
-                                                                     0,
-                                                                     0,
-                                                                     new Constraints(Units.degreesToRadians(360),
-                                                                                     Units.degreesToRadians(180))
-                                           ));
-      // m_driver2.button(1).onTrue(Commands.runOnce(() -> m_drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
-      //driverXbox.button(1).whileTrue(drivebase.sysIdDriveMotorCommand());
-      //driverXbox.button(2).whileTrue(Commands.runEnd(() -> driveDirectAngleKeyboard.driveToPoseEnabled(true),
-      //                                               () -> driveDirectAngleKeyboard.driveToPoseEnabled(false)));
-      
-
-//      driverXbox.b().whileTrue(
-//          drivebase.driveToPose(
-//              new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
-//                              );
-
-    }
-    if (DriverStation.isTest())
-    {
-      m_drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity); // Overrides drive command above!
-
-      m_driver1.button(3).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
-      m_driver1.button(8).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
-      m_driver1.button(7).whileTrue(m_drivebase.centerModulesCommand());
-      m_driver1.button(5).onTrue(Commands.none());
-      m_driver1.button(6).onTrue(Commands.none());
-    } else
-    {
-      // BUTTON CONTROLS
-      m_driver1.button(8).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
-      m_driver1.button(7).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
-      // m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
-      m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
-      m_buttonBox.button(4).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
-      m_buttonBox.button(1).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
-      m_buttonBox.button(2).whileTrue(NamedCommands.getCommand("Retract"));// adjust to have on a Button with button board.
-    }
-  }
-      
-
-
- /**
+    m_ChooserAuto.setDefaultOption("BlueMid", m_drivebase.getAutonomousCommand("BlueMid1"));
+    m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
+    
+        // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));
+        // m_ChooserAuto.addOption("RIGHT BACK 3 L4", m_drivebase.getAutonomousCommand("RIGHT BACK 3 L4"));
+        // m_ChooserAuto.addOption("3 Front Right L4", m_drivebase.getAutonomousCommand("RIGHT FRONT 3 L4"));
+        // m_ChooserAuto.addOption("3 Front Left L4", m_drivebase.getAutonomousCommand("LEFT FRONT 3 L4"));
+        // m_ChooserAuto.addOption("Middle L4 and net", m_drivebase.getAutonomousCommand("MIDDLE algae and L4"));
+        //  m_ChooserAuto.addOption("3 Front Left L4 REVISED", m_drivebase.getAutonomousCommand("LEFT FRONT 3 L4 REVISED"));
+    
+    
+        SmartDashboard.putData("Auto Mode", m_ChooserAuto);
+    
+    
+        if (RobotBase.isSimulation())
+        {
+          m_drivebase.setDefaultCommand(driveFieldOrientedDirectAngleKeyboard);
+        } else
+        {
+          m_drivebase.setDefaultCommand(getTeleopDriveCommand());
+        }
+    
+        if (Robot.isSimulation())
+        {
+          Pose2d target = new Pose2d(new Translation2d(1, 4),
+                                     Rotation2d.fromDegrees(90));
+          //drivebase.getSwerveDrive().field.getObject("targetPose").setPose(target);
+          driveDirectAngleKeyboard.driveToPose(() -> target,
+                                               new ProfiledPIDController(5,
+                                                                         0,
+                                                                         0,
+                                                                         new Constraints(5, 2)),
+                                               new ProfiledPIDController(5,
+                                                                         0,
+                                                                         0,
+                                                                         new Constraints(Units.degreesToRadians(360),
+                                                                                         Units.degreesToRadians(180))
+                                               ));
+          // m_driver2.button(1).onTrue(Commands.runOnce(() -> m_drivebase.resetOdometry(new Pose2d(3, 3, new Rotation2d()))));
+          //driverXbox.button(1).whileTrue(drivebase.sysIdDriveMotorCommand());
+          //driverXbox.button(2).whileTrue(Commands.runEnd(() -> driveDirectAngleKeyboard.driveToPoseEnabled(true),
+          //                                               () -> driveDirectAngleKeyboard.driveToPoseEnabled(false)));
+          
+    
+    //      driverXbox.b().whileTrue(
+    //          drivebase.driveToPose(
+    //              new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
+    //                              );
+    
+        }
+        if (DriverStation.isTest())
+        {
+          m_drivebase.setDefaultCommand(driveFieldOrientedAnglularVelocity); // Overrides drive command above!
+    
+          m_driver1.button(3).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
+          m_driver1.button(8).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
+          m_driver1.button(7).whileTrue(m_drivebase.centerModulesCommand());
+          m_driver1.button(5).onTrue(Commands.none());
+          m_driver1.button(6).onTrue(Commands.none());
+        } else
+        {
+          // BUTTON CONTROLS
+          m_driver1.button(8).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
+          m_driver1.button(7).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
+          //m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
+          m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
+          //m_buttonBox.button(4).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
+          //m_buttonBox.button(1).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
+          //m_buttonBox.button(2).whileTrue(NamedCommands.getCommand("Retract"));// adjust to have on a Button with button board.
+    
+          m_driver1.axisGreaterThan(2, 0.5).or(m_buttonBox.button(4)).whileTrue(NamedCommands.getCommand("Intake")); //attempting overrides, delete if it doesn't work
+          //m_driver1.axisGreaterThan(3, 0.5).or(m_buttonBox.button(3)).whileTrue(NamedCommands.getCommand("Shoot"));
+          m_buttonBox.button(1).or(m_driver1.button(3)).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
+          m_buttonBox.button(2).or(m_driver1.button(2)).whileTrue(NamedCommands.getCommand("Retract"));
+          
+    
+        }
+      }
+          
+    
+    
+     private void m_ChooserAuto(String string, Command autonomousCommand) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'm_ChooserAuto'");
+      }
+    
+    /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
    * @return the command to run in autonomous
