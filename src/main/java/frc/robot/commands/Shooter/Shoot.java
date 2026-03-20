@@ -12,8 +12,8 @@ public class Shoot extends Command{
    boolean m_leftLocked = false;
  boolean m_rightLocked = false;
  private ShooterSubsystem m_shooter;
- private IndexerSubsystem m_Indexer;
  private final DoubleSupplier  m_velocity;
+ private IndexerSubsystem m_Indexer;
 
 
   public Shoot(ShooterSubsystem shooter, IndexerSubsystem indexer,  DoubleSupplier velocity)

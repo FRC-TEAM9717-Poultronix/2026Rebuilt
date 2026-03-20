@@ -199,6 +199,10 @@ public class RobotContainer
     SmartDashboard.putData("Teleop Mode", m_chooserTeleop);
 
     m_ChooserAuto.setDefaultOption("BlueMid", m_drivebase.getAutonomousCommand("BlueMid1"));
+    m_ChooserAuto.addOption("RedStillShooting", m_drivebase.getAutonomousCommand("RedStillShooting"));
+    m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
+    m_ChooserAuto.addOption("RedHomefieldPlay", m_drivebase.getAutonomousCommand("New Auto"));
+    m_ChooserAuto.addOption("BlueStillShooting", m_drivebase.getAutonomousCommand("BlueStillShooting"));
     m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
     
         // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));
