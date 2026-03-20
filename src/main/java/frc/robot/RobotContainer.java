@@ -159,7 +159,10 @@ public class RobotContainer
         driveDirectAngleKeyboard);
 
     // Named Commands
-    NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity)); //));
+   // NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance()));
+    NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance ()));//m_targeting.getShooterRPMFromDistance ()));
+
+    //NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity)); old static velo
     NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.powerI));
     NamedCommands.registerCommand("Extend", new Extend(m_intake));
     NamedCommands.registerCommand("Retract", new Retract(m_intake));

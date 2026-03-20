@@ -49,8 +49,9 @@ public class TargetingSubsystem extends SubsystemBase {
     private Optional<Transform2d> m_transformToGoal;  //Transform to goal in Robot Frame
     private Optional<Transform3d> m_transForNearestTarget;  // Transform to nearest targets pose in Robot Frame
     private Optional<Pose2d> m_poseForNearestTarget; // Pose to align with nearest target (rotation is reversed) 
+    Optional<EstimatedRobotPose> poseEstimate; 
    
-    public static final AprilTagFieldLayout fieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2025ReefscapeWelded);
+    public static final AprilTagFieldLayout fieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltWelded);
 
     // Constructor
     public TargetingSubsystem(SwerveSubsystem drivebase) {
@@ -59,7 +60,8 @@ public class TargetingSubsystem extends SubsystemBase {
         m_camera1Pose = new Transform3d(Constants.VisionConstants.Camera1Translation, Constants.VisionConstants.Camera1Rotation);
         m_photonEstimator = new PhotonPoseEstimator(fieldLayout, PoseStrategy.LOWEST_AMBIGUITY, m_camera1Pose);
 
-        m_selectedFidicial = -1;
+
+        m_selectedFidicial = 10;
     }
 
     public int getFiducial() {
@@ -98,6 +100,20 @@ public class TargetingSubsystem extends SubsystemBase {
 
         return Optional.of(result);
     }
+    
+    /*public double getShooterRPMFromDistance(){
+        var dist = getDistanceToGoal();
+        if(dist.isEmpty()) return 3000.0;
+        return 80.1190966d * dist +315.2741558d + 1892.7032261; // Replace with actual calculation
+    }*/
+
+    public double getShooterRPMFromDistance() {
+    return getDistanceToGoal()
+        .map(d -> (80.1190966d * d * d) + (315.2741558d * d) + 1962.7032261d)
+        .orElse(Constants.ShooterConstants.maxVelocity);
+    }
+
+
 
     // Returns Pose of nearest Target in Robot Frame
     public  Optional<Transform3d> getTransformToNearestTargetInRobotFrame()
