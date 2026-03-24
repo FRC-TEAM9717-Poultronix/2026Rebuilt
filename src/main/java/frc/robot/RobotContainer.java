@@ -53,8 +53,8 @@ public class RobotContainer
   public double yAxis;
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
-  final         CommandJoystick      m_driver1 = new CommandJoystick(0);
-  final         CommandJoystick      m_Joystick = new CommandJoystick(1);
+  final         CommandJoystick      m_driver1 = new CommandJoystick(1);
+  final         CommandJoystick      m_Joystick = new CommandJoystick(0);
   final         CommandJoystick      m_buttonBox = new CommandJoystick(2);
   final         CommandJoystick      m_switchBox = new CommandJoystick(3);
 
@@ -275,23 +275,30 @@ public class RobotContainer
           //m_buttonBox.button(4).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
           //m_buttonBox.button(1).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
           //m_buttonBox.button(2).whileTrue(NamedCommands.getCommand("Retract"));// adjust to have on a Button with button board.
-    
-          m_driver1.axisGreaterThan(2, 0.5).or(m_buttonBox.button(4)).whileTrue(NamedCommands.getCommand("Intake")); //attempting overrides, delete if it doesn't work
+
           //m_driver1.axisGreaterThan(3, 0.5).or(m_buttonBox.button(3)).whileTrue(NamedCommands.getCommand("Shoot"));
-          m_buttonBox.button(1).or(m_driver1.button(3)).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
+        //  m_buttonBox.button(1).or(m_driver1.button(3)).onTrue(NamedCommands.getCommand("Extend"));// adjust to have on a Button with button board.
 
-          m_buttonBox.button(2).or(m_driver1.button(2)).whileTrue(NamedCommands.getCommand("Retract"));
-          m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
-          
-
-          yAxis = m_Joystick.getRawAxis(1);
-          if(yAxis < -0.5) {
-            System.out.println("Forward");
-          }
-          else if(yAxis > 0.5) {
-            System.out.println("Backward");
-          }
+       //   m_buttonBox.button(2).or(m_driver1.button(2)).whileTrue(NamedCommands.getCommand("Retract"));
+          //m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
+          m_Joystick.button(1).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
+          m_Joystick.button(2).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
+            m_Joystick.axisLessThan(1, -0.5).whileTrue(NamedCommands.getCommand("Extend")); //attempting overrides, delete if it doesn't work
+            m_Joystick.axisGreaterThan(1, 0.5).whileTrue(NamedCommands.getCommand("Retract")); //attempting overrides, delete if it doesn't work
         }
+
+        //   yAxis = m_Joystick.getRawAxis(1);
+        //   if(yAxis < -0.5) {
+        //     System.out.println("Forward");
+        //     m_Joystick.axisGreaterThan(1, -0.5).whileTrue(NamedCommands.getCommand("Extend")); //attempting overrides, delete if it doesn't work
+
+        //   }
+        //   else if(yAxis > 0.5) {
+        //     System.out.println("Backward");
+        //     m_Joystick.axisGreaterThan(1, 0.5).whileTrue(NamedCommands.getCommand("Retract")); //attempting overrides, delete if it doesn't work
+
+        //   }
+        // }
       
       }
           

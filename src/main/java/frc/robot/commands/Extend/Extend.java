@@ -42,12 +42,12 @@ public class Extend extends Command {
     switch (m_state) {
       case start:
         System.out.println("Extend Started!");
-        m_DriveMotor.setDrivePower(-.15);
+        m_DriveMotor.setDrivePower(.15);
         m_state = State.start_out;
         break;
       case start_out:
           System.out.println("Extend Out!");
-          m_DriveMotor.setDrivePower(-0.15);
+          m_DriveMotor.setDrivePower(0.15);
       if(currentTime > m_startTime + 100)
         {
           m_state = State.homing;
@@ -55,7 +55,7 @@ public class Extend extends Command {
         break;
       case homing:
           System.out.println("Extend Homing!");
-          m_DriveMotor.setDrivePower(-0.15);
+          m_DriveMotor.setDrivePower(0.15);
         if(m_DriveMotor.isStalled())
         {
           m_DriveMotor.setHome();
