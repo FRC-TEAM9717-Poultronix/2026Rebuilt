@@ -42,7 +42,7 @@ public class Retract extends Command {
     switch (m_state) {
       case start:
         System.out.println("Retract Started!");
-        m_DriveMotor.setDrivePower(-.15);
+        m_DriveMotor.setDrivePower(-0.15);
         m_state = State.start_out;
         break;
       case start_out:

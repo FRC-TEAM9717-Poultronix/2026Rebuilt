@@ -82,7 +82,7 @@ public class AutoShoot extends Command{
   //in auto, we need this to return true after a certain amount of time
   @Override
   public boolean isFinished() {
-      if(currentTime > m_startTime + 5000)
+      if(currentTime > m_startTime + 15)
         {
             return true;
         }
