@@ -87,8 +87,8 @@ public class RobotContainer
    * Clone's the angular velocity input stream and converts it to a fieldRelative input stream.
    */
   SwerveInputStream driveDirectAngle = driveAngularVelocity.copy()
-                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * 1,
-                                                                                      () -> m_driver1.getRawAxis(5) * 1)
+                                                           .withControllerHeadingAxis(() -> m_driver1.getRawAxis(4) * -1,
+                                                                                      () -> m_driver1.getRawAxis(5) * -1)
                                                            .headingWhile(true);
 
   /**
@@ -208,8 +208,12 @@ public class RobotContainer
     m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
     m_ChooserAuto.addOption("RedHomefieldPlay", m_drivebase.getAutonomousCommand("New Auto"));
     m_ChooserAuto.addOption("BlueStillShooting", m_drivebase.getAutonomousCommand("BlueStillShooting"));
-    m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
+    m_ChooserAuto.addOption("Blue Theft", m_drivebase.getAutonomousCommand("BlueTheft"));
+    m_ChooserAuto.addOption("OurNeutralCleanup", m_drivebase.getAutonomousCommand("OurNutrealCleanup"));
+    m_ChooserAuto.addOption("WindhamLeftTrenchBlue", m_drivebase.getAutonomousCommand("WindhamLeftTrenchBlue"));
+
     
+
         // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));
         // m_ChooserAuto.addOption("RIGHT BACK 3 L4", m_drivebase.getAutonomousCommand("RIGHT BACK 3 L4"));
         // m_ChooserAuto.addOption("3 Front Right L4", m_drivebase.getAutonomousCommand("RIGHT FRONT 3 L4"));

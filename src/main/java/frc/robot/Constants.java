@@ -144,7 +144,7 @@ public final class Constants
     public static final int CANID_Intake = 20;
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINTAKE = 0.0;
-    public static final double powerD = 0.75;
+    public static final double powerD = 0.85;
     public static final double powerI = 0.4;
 
 

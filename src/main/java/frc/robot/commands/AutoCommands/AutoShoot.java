@@ -25,8 +25,8 @@ public class AutoShoot extends Command{
     m_Indexer = indexer;
     m_velocity = velocity;
 
-
-    addRequirements(m_shooter, m_Indexer);  
+    addRequirements();
+    //addRequirements(m_shooter, m_Indexer);  //difference
   }
 
 // Called when the command is initially scheduled.

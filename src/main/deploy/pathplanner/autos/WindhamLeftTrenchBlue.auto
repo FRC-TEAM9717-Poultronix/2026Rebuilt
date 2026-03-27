@@ -5,9 +5,28 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "deadline",
           "data": {
-            "pathName": "BlueLeftFeed"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "BlueLeftFeed"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Extend"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Intake"
+                }
+              }
+            ]
           }
         },
         {
@@ -21,36 +40,12 @@
           "data": {
             "commands": [
               {
-                "type": "wait",
-                "data": {
-                  "waitTime": 3.0
-                }
-              },
-              {
                 "type": "named",
                 "data": {
-                  "name": "AutoShoot"
+                  "name": "Shoot"
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BlueReset"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "DeepFeed"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "BumpCrossShoot"
           }
         }
       ]
