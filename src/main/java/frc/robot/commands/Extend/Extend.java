@@ -30,7 +30,6 @@ public class Extend extends Command {
   {
     m_state = State.start;
     m_startTime =  System.currentTimeMillis();
-    m_DriveMotor.disableSoftLimits();
   }
 
   // Called every cycle while command is active
@@ -42,13 +41,13 @@ public class Extend extends Command {
     switch (m_state) {
       case start:
         System.out.println("Extend Started!");
-        m_DriveMotor.setDrivePower(.15);
+        m_DriveMotor.setDrivePower(.30);
         m_state = State.start_out;
         break;
       case start_out:
           System.out.println("Extend Out!");
           m_DriveMotor.setDrivePower(0.15);
-      if(currentTime > m_startTime + 100)
+      if(currentTime > m_startTime + 200)
         {
           m_state = State.homing;
         }
@@ -58,7 +57,6 @@ public class Extend extends Command {
           m_DriveMotor.setDrivePower(0.15);
         if(m_DriveMotor.isStalled())
         {
-          m_DriveMotor.setHome();
           m_state = State.finished;
         }
         break;
@@ -78,7 +76,7 @@ public class Extend extends Command {
   @Override
   public void end(boolean interrupted)
   {
-    m_DriveMotor.stopDrive();;
+    m_DriveMotor.stopIntake();
     System.out.println("Extend Ended!");
   }
 

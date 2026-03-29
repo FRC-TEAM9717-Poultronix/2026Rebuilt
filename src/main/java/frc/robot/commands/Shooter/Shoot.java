@@ -39,11 +39,11 @@ public class Shoot extends Command{
     m_shooter.setShooter(desiredVelocity);
   if(m_shooter.getVelocityLeft() > desiredVelocity - 100) {
       m_shooter.setIndexerL(0.7);
-  } 
+  }
 
   if(m_shooter.getVelocityRight() > desiredVelocity - 100) { 
-      m_shooter.setIndexerR(0.7);
-        m_Indexer.setIndexer(6);
+      m_shooter.setIndexerR(0.7);   
+  m_Indexer.setIndexer(6);
         m_leftLocked = true;
   
   } else if(m_shooter.getVelocityRight() < 1000 && !m_leftLocked) { 
@@ -52,7 +52,7 @@ public class Shoot extends Command{
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {                             
     System.out.println("shooter end");
 
     m_shooter.stopShooter();

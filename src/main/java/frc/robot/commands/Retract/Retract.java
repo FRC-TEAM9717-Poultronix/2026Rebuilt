@@ -30,7 +30,6 @@ public class Retract extends Command {
   {
     m_state = State.start;
     m_startTime =  System.currentTimeMillis();
-    m_DriveMotor.disableSoftLimits();
   }
 
   // Called every cycle while command is active
@@ -42,13 +41,13 @@ public class Retract extends Command {
     switch (m_state) {
       case start:
         System.out.println("Retract Started!");
-        m_DriveMotor.setDrivePower(-0.15);
+        m_DriveMotor.setDrivePower(-0.30);
         m_state = State.start_out;
         break;
       case start_out:
           System.out.println("Retract Out!");
           m_DriveMotor.setDrivePower(-0.15);
-      if(currentTime > m_startTime + 100)
+      if(currentTime > m_startTime + 200)
         {
           m_state = State.homing;
         }
@@ -79,7 +78,7 @@ public class Retract extends Command {
   @Override
   public void end(boolean interrupted)
   {
-    m_DriveMotor.stopDrive();
+    m_DriveMotor.stopIntake();
     System.out.println("Retract Ended!");
   }
 

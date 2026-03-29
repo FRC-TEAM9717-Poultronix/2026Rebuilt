@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 5.083566666666667,
-        "y": 5.584366666666666
+        "x": 7.344277777777777,
+        "y": 4.8547513888888885
       },
       "prevControl": {
-        "x": 7.402744444444444,
-        "y": 5.486922222222222
+        "x": 7.617122222222221,
+        "y": 4.722592361111111
       },
       "nextControl": {
-        "x": 3.0470637463488712,
-        "y": 5.66993401625985
+        "x": 7.071433333333333,
+        "y": 4.986910416666666
       },
       "isLocked": false,
       "linkedName": null
@@ -46,7 +46,7 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1,
+      "waypointRelativePos": 1.5,
       "rotationDegrees": 0.0
     }
   ],
@@ -55,7 +55,7 @@
   "eventMarkers": [
     {
       "name": "AutoShoot",
-      "waypointRelativePos": 1.5861042183622551,
+      "waypointRelativePos": 1.8,
       "endWaypointRelativePos": null,
       "command": null
     }
@@ -78,5 +78,5 @@
     "velocity": 0,
     "rotation": -90.0
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

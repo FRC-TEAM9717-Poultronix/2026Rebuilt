@@ -162,10 +162,11 @@ public class RobotContainer
     // Named Commands
    // NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance()));
     NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance ()));//m_targeting.getShooterRPMFromDistance ()));
-
-
+    NamedCommands.registerCommand("Shoot Manual", new Shoot(m_shooter, m_indexer, () -> 3000.0));
+    NamedCommands.registerCommand("Agitate",  m_intake.agitateCommand());
+    
     //NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity)); old static velo
-    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.powerI));
+    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.maxVelocity));
     NamedCommands.registerCommand("Extend", new Extend(m_intake));
     NamedCommands.registerCommand("Retract", new Retract(m_intake));
     // NamedCommands.registerCommand("Extend", new Extend(m_intake));
@@ -211,6 +212,7 @@ public class RobotContainer
     m_ChooserAuto.addOption("Blue Theft", m_drivebase.getAutonomousCommand("BlueTheft"));
     m_ChooserAuto.addOption("OurNeutralCleanup", m_drivebase.getAutonomousCommand("OurNutrealCleanup"));
     m_ChooserAuto.addOption("WindhamLeftTrenchBlue", m_drivebase.getAutonomousCommand("WindhamLeftTrenchBlue"));
+    m_ChooserAuto.addOption("Test", m_drivebase.getAutonomousCommand("TestAuto"));
 
     
 
@@ -287,8 +289,11 @@ public class RobotContainer
           //m_buttonBox.button(3).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
           m_Joystick.button(1).whileTrue(NamedCommands.getCommand("Shoot"));//add as a switch to start a cycle involving the vision targeting to find target RPM.
           m_Joystick.button(2).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.
-            m_Joystick.axisLessThan(1, -0.5).whileTrue(NamedCommands.getCommand("Extend")); //attempting overrides, delete if it doesn't work
+            m_Joystick.axisLessThan(1, -0.5).onTrue(NamedCommands.getCommand("Extend")); //attempting overrides, delete if it doesn't work
             m_Joystick.axisGreaterThan(1, 0.5).whileTrue(NamedCommands.getCommand("Retract")); //attempting overrides, delete if it doesn't work
+          m_Joystick.button(3).whileTrue(NamedCommands.getCommand("Shoot Manual"));
+          m_Joystick.button(4).whileTrue(NamedCommands.getCommand("Agitate"));
+
         }
 
         //   yAxis = m_Joystick.getRawAxis(1);

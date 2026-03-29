@@ -344,11 +344,11 @@ public class Vision
          Constants.VisionConstants.CameraStdTrans, 
          Constants.VisionConstants.CameraStdRot)
     
-    // , CAM2(Constants.VisionConstants.Camera2Name,
-    //      Constants.VisionConstants.Camera2Rotation,
-    //      Constants.VisionConstants.Camera2Translation,
-    //      Constants.VisionConstants.CameraStdTrans, 
-    //      Constants.VisionConstants.CameraStdRot)
+    , CAM2(Constants.VisionConstants.Camera2Name,
+         Constants.VisionConstants.Camera2Rotation,
+         Constants.VisionConstants.Camera2Translation,
+         Constants.VisionConstants.CameraStdTrans, 
+         Constants.VisionConstants.CameraStdRot)
          
     // , CAM3(Constants.VisionConstants.Camera2Name,
     //      Constants.VisionConstants.Camera2Rotation,

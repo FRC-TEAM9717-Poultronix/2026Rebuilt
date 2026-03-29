@@ -46,7 +46,7 @@ public final class Constants
                                                                          Meter.of(4.03)),
                                                              Rotation2d.fromDegrees(0));
   
-  public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(4.45),
+  public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(4.63),
                                                                      Meter.of(4.03)),
                                                               Rotation2d.fromDegrees(0));
 
@@ -112,11 +112,11 @@ public final class Constants
                                                                             Units.inchesToMeters(0.0),
                                                                             Units.inchesToMeters(18.5));
 
-    public static final String Camera2Name = "left";
-    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
-    public static final Translation3d Camera2Translation = new Translation3d(Units.inchesToMeters(13.5),
-                                                                            Units.inchesToMeters(0.0),
-                                                                            Units.inchesToMeters(8.0));
+    public static final String Camera2Name = "Back";
+    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(-10.0), 0);
+    public static final Translation3d Camera2Translation = new Translation3d(Units.inchesToMeters(25.5),
+                                                                            Units.inchesToMeters(8.0),
+                                                                            Units.inchesToMeters(18.5));
    
     public static final String Camera3Name = "right";
     public static final Rotation3d Camera3Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);
@@ -139,13 +139,33 @@ public final class Constants
 
   public static final class IntakeConstants
   {
-    public static final int CANID_Drive_Motor_L = 21;
-    public static final int CANID_Drive_Motor_R = 22;
+    // public static final int CANID_Drive_Motor_L = 21;
+    // public static final int CANID_Drive_Motor_R = 22;
+    // public static final int CANID_Intake = 20;
+    // public static final int MAXCURRENTLIMIT = 40; 
+    // public static final double RAMPRATEINTAKE = 0.0;
+    // public static final double powerD = 0.85;
+    // public static final double powerI = 0.4;
+    // old percentage based values, may need to be adjusted for velocity control
+
+
+    public static final int CANID_DriveL = 21;
+    public static final int CANID_DriveR = 22;
     public static final int CANID_Intake = 20;
+
     public static final int MAXCURRENTLIMIT = 40; 
     public static final double RAMPRATEINTAKE = 0.0;
-    public static final double powerD = 0.85;
-    public static final double powerI = 0.4;
+    public static final double RAMPRATESHOOTERINTAKE = 0;
+
+    public static final double kP_Drive = 4;
+    public static final double kI_Drive = 0.0;
+    public static final double kD_Drive = 0.005;
+
+    public static final double kV_Drive = 0.0;
+    public static final double kS_Drive = 0.0;
+  
+    public static final double maxVelocity = 0.6;
+
 
 
   }

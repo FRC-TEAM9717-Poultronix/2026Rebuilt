@@ -3,29 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 3.6121555555555567,
-        "y": 7.416322222222221
+        "x": 3.553688888888889,
+        "y": 7.426066666666667
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.612155555555552,
-        "y": 7.416322222222221
+        "x": 4.5536888888888845,
+        "y": 7.426066666666667
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.782777777777778,
-        "y": 6.256733333333333
+        "x": 7.178622222222223,
+        "y": 6.217755555555555
       },
       "prevControl": {
-        "x": 7.682108912546038,
-        "y": 7.817100744425234
+        "x": 7.077953356990483,
+        "y": 7.778122966647456
       },
       "nextControl": {
-        "x": 7.821755555555557,
-        "y": 5.652577777777777
+        "x": 7.217600000000002,
+        "y": 5.613599999999999
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.23708888888889,
+        "y": 5.0874
+      },
+      "prevControl": {
+        "x": 7.2462243055555575,
+        "y": 5.363289583333333
+      },
+      "nextControl": {
+        "x": 7.227953472222222,
+        "y": 4.811510416666667
       },
       "isLocked": false,
       "linkedName": null
@@ -36,20 +52,25 @@
         "y": 3.635
       },
       "prevControl": {
-        "x": 7.773255555555555,
-        "y": 4.677655555555555
+        "x": 7.130122222222222,
+        "y": 2.436433333333334
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 2,
+      "rotationDegrees": -90.0
+    }
+  ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0.8794044665012409,
-      "maxWaypointRelativePos": 2.0,
+      "maxWaypointRelativePos": 3.0,
       "constraints": {
         "maxVelocity": 1.5,
         "maxAcceleration": 3.0,
@@ -64,7 +85,7 @@
   "eventMarkers": [
     {
       "name": "Extend",
-      "waypointRelativePos": 0.315632754342429,
+      "waypointRelativePos": 0.49032258064514955,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -95,13 +116,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -91.02303018866773
+    "rotation": -90.89517371021115
   },
   "reversed": false,
   "folder": "Evan Pathways",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -52.04576912486752
+    "rotation": 0.47350805873487745
   },
   "useDefaultConstraints": true
 }

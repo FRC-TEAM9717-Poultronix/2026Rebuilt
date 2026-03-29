@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.773033333333334,
-        "y": 3.9278111111111107
+        "x": 7.782777777777778,
+        "y": 3.635477777777778
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.821755555555557,
-        "y": 5.155611111111111
+        "x": 7.8315,
+        "y": 4.863277777777778
       },
       "isLocked": false,
-      "linkedName": "BlueLeftIntakeEnd"
+      "linkedName": null
     },
     {
       "anchor": {
@@ -57,7 +57,7 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "BlueLeftTrenchShoot"
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -72,16 +72,9 @@
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "AutoShoot",
-      "waypointRelativePos": 2.444665012406973,
-      "endWaypointRelativePos": null,
-      "command": null
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 3.0,
+    "maxVelocity": 3.5,
     "maxAcceleration": 3.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
