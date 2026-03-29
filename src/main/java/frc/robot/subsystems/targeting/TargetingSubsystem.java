@@ -1,5 +1,7 @@
 package frc.robot.subsystems.targeting;
 
+import static edu.wpi.first.units.Units.Degrees;
+
 import java.lang.StackWalker.Option;
 import java.util.Optional;
 
@@ -29,6 +31,7 @@ import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -46,6 +49,8 @@ public class TargetingSubsystem extends SubsystemBase {
 
     private int m_selectedFidicial;
 
+    private Optional<Double> m_distanceToGoal;
+    private Optional<Angle> m_angleToGoal;
     private Optional<Transform2d> m_transformToGoal;  //Transform to goal in Robot Frame
     private Optional<Transform3d> m_transForNearestTarget;  // Transform to nearest targets pose in Robot Frame
     private Optional<Pose2d> m_poseForNearestTarget; // Pose to align with nearest target (rotation is reversed) 
@@ -59,7 +64,6 @@ public class TargetingSubsystem extends SubsystemBase {
         m_camera1 = new PhotonCamera(Constants.VisionConstants.Camera1Name);
         m_camera1Pose = new Transform3d(Constants.VisionConstants.Camera1Translation, Constants.VisionConstants.Camera1Rotation);
         m_photonEstimator = new PhotonPoseEstimator(fieldLayout, PoseStrategy.LOWEST_AMBIGUITY, m_camera1Pose);
-
 
         m_selectedFidicial = 10;
     }
@@ -93,12 +97,12 @@ public class TargetingSubsystem extends SubsystemBase {
     // Returns distance to goal
     public Optional<Double> getDistanceToGoal()
     {
-        double x = m_transformToGoal.get().getTranslation().getX();
-        double y = m_transformToGoal.get().getTranslation().getY();
+        return m_distanceToGoal;
+    }
 
-        double result = Math.sqrt(x*x + y*y);
-
-        return Optional.of(result);
+    public Optional<Angle> getAngleToGoal()
+    {
+        return m_angleToGoal;
     }
     
     /*public double getShooterRPMFromDistance(){
@@ -153,6 +157,10 @@ public class TargetingSubsystem extends SubsystemBase {
         Pose2d robot = m_drivebase.getPose();
         m_transformToGoal = Optional.of(goal.minus(robot));
 
+        // Get Distance to goal
+        m_distanceToGoal = Optional.of(m_transformToGoal.get().getTranslation().getNorm());
+        m_angleToGoal = Optional.of(m_transformToGoal.get().getTranslation().getAngle().getMeasure());
+
         // Clear targets
         m_transForNearestTarget = Optional.empty();
         m_poseForNearestTarget = Optional.empty();
@@ -187,16 +195,23 @@ public class TargetingSubsystem extends SubsystemBase {
             Pose2d poseOfTarget = new Pose2d(m_transForNearestTarget.get().getX(),m_transForNearestTarget.get().getY(),rotationOfTarget);
             m_poseForNearestTarget = Optional.of(poseOfTarget);
         }
+
+        updateTelemetry();
     }
 
     private void updateTelemetry() {
+        SmartDashboard.putNumber("targeting/distanceToGoal", m_distanceToGoal.orElse(0.0));
+        SmartDashboard.putNumber("targeting/angleToGoal", m_angleToGoal.get().in(Degrees));
         SmartDashboard.putBoolean("targeting/nearest_target/visible", m_transForNearestTarget.isPresent());
-        SmartDashboard.putNumber("targeting/nearest_target/x", m_transForNearestTarget.get().getX());
-        SmartDashboard.putNumber("targeting/nearest_target/y", m_transForNearestTarget.get().getY());
-        SmartDashboard.putNumber("targeting/nearest_target/z", m_transForNearestTarget.get().getZ());
-        SmartDashboard.putNumber("targeting/nearest_target/roll", m_transForNearestTarget.get().getRotation().getX());
-        SmartDashboard.putNumber("targeting/nearest_target/pitch", m_transForNearestTarget.get().getRotation().getY());
-        SmartDashboard.putNumber("targeting/nearest_target/yaw", m_transForNearestTarget.get().getRotation().getZ());
+        if (m_transForNearestTarget.isPresent())
+        {
+            SmartDashboard.putNumber("targeting/nearest_target/x", m_transForNearestTarget.get().getX());
+            SmartDashboard.putNumber("targeting/nearest_target/y", m_transForNearestTarget.get().getY());
+            SmartDashboard.putNumber("targeting/nearest_target/z", m_transForNearestTarget.get().getZ());
+            SmartDashboard.putNumber("targeting/nearest_target/roll", m_transForNearestTarget.get().getRotation().getX());
+            SmartDashboard.putNumber("targeting/nearest_target/pitch", m_transForNearestTarget.get().getRotation().getY());
+            SmartDashboard.putNumber("targeting/nearest_target/yaw", m_transForNearestTarget.get().getRotation().getZ());
+        }
     }
 
 }
