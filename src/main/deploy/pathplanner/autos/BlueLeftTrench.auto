@@ -1,0 +1,62 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlueLeftFeedShort"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlueLeftShootShort"
+          }
+        },
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Shoot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Agitate"
+                }
+              },
+              {
+                "type": "wait",
+                "data": {
+                  "waitTime": 6.0
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlueReset"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "BlueLeftSecondPass"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Main Autos",
+  "choreoAuto": false
+}

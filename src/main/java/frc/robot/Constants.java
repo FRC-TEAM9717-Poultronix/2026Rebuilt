@@ -44,7 +44,7 @@ public final class Constants
                                                               Rotation2d.fromDegrees(0));
   public static final Pose2d startPoseRed = new Pose2d(new Translation2d(Meter.of(13),
                                                                          Meter.of(4.03)),
-                                                             Rotation2d.fromDegrees(0));
+                                                             Rotation2d.fromDegrees(180));
   
   public static final Pose2d goalBlue = new Pose2d(new Translation2d(Meter.of(4.63),
                                                                      Meter.of(4.03)),
@@ -52,7 +52,7 @@ public final class Constants
 
   public static final Pose2d goalRed = new Pose2d(new Translation2d(Meter.of(11.92),
                                                                      Meter.of(4.03)),
-                                                              Rotation2d.fromDegrees(0));                                                              
+                                                              Rotation2d.fromDegrees(180));                                                              
 
   public static final class DrivebaseConstants
   {
@@ -159,12 +159,20 @@ public final class Constants
 
     public static final double kP_Drive = 4;
     public static final double kI_Drive = 0.0;
-    public static final double kD_Drive = 0.005;
+    public static final double kD_Drive = 0.0025;
 
     public static final double kV_Drive = 0.0;
     public static final double kS_Drive = 0.0;
   
-    public static final double maxVelocity = 0.6;
+    public static final double kP_Intake = 0.00008;
+    public static final double kI_Intake = 0.0;
+    public static final double kD_Intake = 0.005;
+
+    public static final double kV_Intake = 0.001825;
+    public static final double kS_Intake = 0.10;
+
+    public static final double IntakeVelocity = 4000;
+
 
 
 

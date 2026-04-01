@@ -113,7 +113,7 @@ public class TargetingSubsystem extends SubsystemBase {
 
     public double getShooterRPMFromDistance() {
         double result = getDistanceToGoal()
-        .map(d -> (80.1190966d * d * d) + (315.2741558d * d) + 2230.7032261d)//2042
+        .map(d -> (80.1190966d * d * d) + (315.2741558d * d) + 2190.7032261d)//2042,2230
         .orElse(Constants.ShooterConstants.maxVelocity);
         System.out.println("rpm: " + result);
         return result;

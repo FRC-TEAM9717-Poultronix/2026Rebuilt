@@ -39,9 +39,89 @@
         "x": 2.9300444444444445,
         "y": 5.759766666666667
       },
-      "nextControl": null,
+      "nextControl": {
+        "x": 1.916622222222224,
+        "y": 7.26041111111111
+      },
       "isLocked": false,
       "linkedName": "BlueLeftTrenchShoot"
+    },
+    {
+      "anchor": {
+        "x": 4.3040111111111115,
+        "y": 4.200655555555556
+      },
+      "prevControl": {
+        "x": 3.1103166666666677,
+        "y": 5.730533333333333
+      },
+      "nextControl": {
+        "x": 5.497705555555555,
+        "y": 2.6707777777777784
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.3040111111111115,
+        "y": 4.200655555555556
+      },
+      "prevControl": {
+        "x": 4.900858333333334,
+        "y": 3.435716666666667
+      },
+      "nextControl": {
+        "x": 3.707163888888889,
+        "y": 4.965594444444444
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.3040111111111115,
+        "y": 4.200655555555556
+      },
+      "prevControl": {
+        "x": 4.005587500000001,
+        "y": 4.583125
+      },
+      "nextControl": {
+        "x": 4.602434722222222,
+        "y": 3.8181861111111113
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.3040111111111115,
+        "y": 4.200655555555556
+      },
+      "prevControl": {
+        "x": 4.457800280487229,
+        "y": 4.00355433439596
+      },
+      "nextControl": {
+        "x": 4.150221941734994,
+        "y": 4.397756776715151
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 4.3040111111111115,
+        "y": 4.200655555555556
+      },
+      "prevControl": {
+        "x": 4.150221941734994,
+        "y": 4.397756776715152
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -73,7 +153,7 @@
     "rotation": -52.505460820741646
   },
   "reversed": false,
-  "folder": "Evan Pathways",
+  "folder": "Blue Left Pathways",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -90.0

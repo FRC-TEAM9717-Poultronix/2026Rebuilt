@@ -162,11 +162,11 @@ public class RobotContainer
     // Named Commands
    // NamedCommands.registerCommand("AutoShoot", new AutoShoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance()));
     NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> m_targeting.getShooterRPMFromDistance ()));//m_targeting.getShooterRPMFromDistance ()));
-    NamedCommands.registerCommand("Shoot Manual", new Shoot(m_shooter, m_indexer, () -> 3000.0));
+    NamedCommands.registerCommand("Shoot Manual", new Shoot(m_shooter, m_indexer, () -> 4000.0));
     NamedCommands.registerCommand("Agitate",  m_intake.agitateCommand());
     
     //NamedCommands.registerCommand("Shoot", new Shoot(m_shooter, m_indexer, () -> Constants.ShooterConstants.maxVelocity)); old static velo
-    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.maxVelocity));
+    NamedCommands.registerCommand("Intake", new Intake(m_intake, () -> Constants.IntakeConstants.IntakeVelocity));
     NamedCommands.registerCommand("Extend", new Extend(m_intake));
     NamedCommands.registerCommand("Retract", new Retract(m_intake));
     // NamedCommands.registerCommand("Extend", new Extend(m_intake));
@@ -207,13 +207,14 @@ public class RobotContainer
     m_ChooserAuto.setDefaultOption("BlueMid", m_drivebase.getAutonomousCommand("BlueMid1"));
     m_ChooserAuto.addOption("RedStillShooting", m_drivebase.getAutonomousCommand("RedStillShooting"));
     m_ChooserAuto.addOption("No Auto", m_drivebase.getAutonomousCommand("New Auto"));
-    m_ChooserAuto.addOption("RedHomefieldPlay", m_drivebase.getAutonomousCommand("New Auto"));
+    m_ChooserAuto.addOption("RedHomefieldPlay", m_drivebase.getAutonomousCommand("RedTheft"));
     m_ChooserAuto.addOption("BlueStillShooting", m_drivebase.getAutonomousCommand("BlueStillShooting"));
     m_ChooserAuto.addOption("Blue Theft", m_drivebase.getAutonomousCommand("BlueTheft"));
     m_ChooserAuto.addOption("OurNeutralCleanup", m_drivebase.getAutonomousCommand("OurNutrealCleanup"));
     m_ChooserAuto.addOption("WindhamLeftTrenchBlue", m_drivebase.getAutonomousCommand("WindhamLeftTrenchBlue"));
     m_ChooserAuto.addOption("Test", m_drivebase.getAutonomousCommand("TestAuto"));
-
+    m_ChooserAuto.addOption("WindhamShort", m_drivebase.getAutonomousCommand("WindhamShort"));
+    m_ChooserAuto.addOption("BlueRightTrench", m_drivebase.getAutonomousCommand("BlueRightTrench"));
     
 
         // m_ChooserAuto.addOption("3 Back Left L4", m_drivebase.getAutonomousCommand("BACK LEFT 3 L4"));

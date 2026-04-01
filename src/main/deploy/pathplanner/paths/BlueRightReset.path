@@ -4,28 +4,28 @@
     {
       "anchor": {
         "x": 2.666944444444445,
-        "y": 6.617277777777778
+        "y": 1.3845111111111101
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.8326,
-        "y": 7.328622222222223
+        "x": 2.949533333333333,
+        "y": 0.7121444444444445
       },
       "isLocked": false,
-      "linkedName": "BlueLeftShootEnd"
+      "linkedName": "BlueRightShootEnd"
     },
     {
       "anchor": {
-        "x": 4.187077777777779,
-        "y": 7.494277777777777
+        "x": 4.109122222222222,
+        "y": 0.6439333333333332
       },
       "prevControl": {
-        "x": 3.1870777777777786,
-        "y": 7.494277777777777
+        "x": 3.109122222222222,
+        "y": 0.6439333333333332
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "BlueResetEnd"
+      "linkedName": "BlueRightResetEnd"
     }
   ],
   "rotationTargets": [],
@@ -33,13 +33,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "Extend",
-      "waypointRelativePos": 1.0,
+      "name": "Retract",
+      "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "Extend"
+          "name": "Retract"
         }
       }
     }
@@ -54,13 +54,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.0
+    "rotation": 89.72454164386477
   },
   "reversed": false,
-  "folder": "Blue Left Pathways",
+  "folder": "Blue Right Pathways",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -52.04852002651284
+    "rotation": 53.947584754815644
   },
   "useDefaultConstraints": true
 }

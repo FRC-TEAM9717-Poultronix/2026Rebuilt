@@ -3,11 +3,13 @@
   "robotLength": 0.9,
   "holonomicMode": true,
   "pathFolders": [
+    "Blue Left Pathways",
+    "Blue Right Pathways",
     "New Folder",
-    "Evan Pathways"
+    "Red Left Pathways"
   ],
   "autoFolders": [
-    "Derrick Autos"
+    "Main Autos"
   ],
   "defaultMaxVel": 3.5,
   "defaultMaxAccel": 3.0,
