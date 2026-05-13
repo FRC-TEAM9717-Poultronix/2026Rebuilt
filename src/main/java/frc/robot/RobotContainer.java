@@ -276,7 +276,7 @@ public class RobotContainer
         } else
         {
           // BUTTON CONTROLS
-          m_driver1.button(1).onTrue((Commands.runOnce(m_drivebase::zeroGyro)));
+          m_driver1.button(1).onTrue((Commands.runOnce(m_drivebase::zeroGyroWithAlliance)));
           m_driver1.button(7).whileTrue(Commands.runOnce(m_drivebase::lock, m_drivebase).repeatedly());
           //m_driver1.button(3).onTrue(Commands.runOnce(m_drivebase::addFakeVisionReading));
           //m_buttonBox.button(4).whileTrue(NamedCommands.getCommand("Intake"));// adjust to have on a switch with button board.

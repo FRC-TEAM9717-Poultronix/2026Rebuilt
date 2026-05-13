@@ -125,7 +125,7 @@ public class ShooterSubsystem extends SubsystemBase {
    public void setShooter(double velocity) {
        m_shooterL.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
        m_shooterR.getClosedLoopController().setSetpoint(velocity, ControlType.kVelocity);
-   }
+    }
 
    public double getVelocityLeft() {
      return m_encoderShooterL.getVelocity();

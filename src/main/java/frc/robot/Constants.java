@@ -39,10 +39,10 @@ public final class Constants
 
   public static final AprilTagFieldLayout fieldLayout = AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltWelded);
   
-  public static final Pose2d startPoseBlue = new Pose2d(new Translation2d(Meter.of(1),
-                                                                          Meter.of(4)),
+  public static final Pose2d startPoseBlue = new Pose2d(new Translation2d(Meter.of(3.59),
+                                                                          Meter.of(4.03)),
                                                               Rotation2d.fromDegrees(0));
-  public static final Pose2d startPoseRed = new Pose2d(new Translation2d(Meter.of(13),
+  public static final Pose2d startPoseRed = new Pose2d(new Translation2d(Meter.of(12.96),
                                                                          Meter.of(4.03)),
                                                              Rotation2d.fromDegrees(180));
   
@@ -98,7 +98,7 @@ public final class Constants
     public static final double kV_shooterR = 0.0031;
     public static final double kS_shooter = 0.10;
   
-    public static final double power = 0.8;
+    public static final double power = 1;
     public static final double maxVelocity = 3000;
   }
 
@@ -113,10 +113,10 @@ public final class Constants
                                                                             Units.inchesToMeters(18.5));
 
     public static final String Camera2Name = "Back";
-    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(-10.0), 0);
-    public static final Translation3d Camera2Translation = new Translation3d(Units.inchesToMeters(25.5),
-                                                                            Units.inchesToMeters(8.0),
-                                                                            Units.inchesToMeters(18.5));
+    public static final Rotation3d Camera2Rotation = new Rotation3d(0, Units.degreesToRadians(-10.0),Units.degreesToRadians(-175.0));
+    public static final Translation3d Camera2Translation = new Translation3d(Units.inchesToMeters(-11.875),
+                                                                            Units.inchesToMeters(-8.0),
+                                                                            Units.inchesToMeters(18.0));
    
     public static final String Camera3Name = "right";
     public static final Rotation3d Camera3Rotation = new Rotation3d(0, Units.degreesToRadians(0), 0);

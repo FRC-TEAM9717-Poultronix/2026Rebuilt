@@ -765,6 +765,7 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
@@ -801,7 +802,7 @@ public class SwerveSubsystem extends SubsystemBase
   /**
    * Enable vision odometry updates while driving.
    */
-  private final boolean     visionDriveTest = Constants.VisionConstants.Enable;
+  private boolean     visionDriveTest = false;
  
   /**
    * PhotonVision class to keep an accurate odometry.
@@ -815,6 +816,11 @@ public class SwerveSubsystem extends SubsystemBase
    */
    public SwerveSubsystem(File directory)
   { 
+    Preferences.initBoolean("vision_enable", true);
+    visionDriveTest = Preferences.getBoolean("vision_enable", true);
+
+    Preferences.initBoolean("mirror_path", false);
+    
     boolean blueAlliance = DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Blue;
     Pose2d startingPose = blueAlliance ? Constants.startPoseBlue : Constants.startPoseRed;
    
@@ -841,8 +847,8 @@ public class SwerveSubsystem extends SubsystemBase
     {
       setupPhotonVision();
       // Stop the odometry thread if we are using vision that way we can synchronize updates better.
-      swerveDrive.stopOdometryThread();
     }
+    swerveDrive.stopOdometryThread();
     setupPathPlanner();
   }
 
@@ -872,10 +878,13 @@ public class SwerveSubsystem extends SubsystemBase
   @Override
   public void periodic()
   {
+    visionDriveTest = Preferences.getBoolean("vision_enable", true);
+    
     // When vision is enabled we must manually update odometry in SwerveDrive
+    swerveDrive.updateOdometry();
     if (visionDriveTest)
     {
-      swerveDrive.updateOdometry();
+      if(vision == null) setupPhotonVision();
       vision.updatePoseEstimation(swerveDrive);
     }
   }
@@ -988,8 +997,9 @@ public class SwerveSubsystem extends SubsystemBase
    */
   public Command getAutonomousCommand(String pathName)
   {
+    Boolean mirror = Preferences.getBoolean("mirror_path", false);
     // Create a path following command using AutoBuilder. This will also trigger event markers.
-    return new PathPlannerAuto(pathName);
+    return new PathPlannerAuto(pathName, mirror);
   }
 
   /**
@@ -1462,4 +1472,5 @@ public class SwerveSubsystem extends SubsystemBase
   {
     return swerveDrive;
   }
+  
 }
